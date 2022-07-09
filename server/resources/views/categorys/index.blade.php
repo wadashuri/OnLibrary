@@ -15,6 +15,7 @@
                             <tr>
                                 <th>名前</th>
                                 <th>タイトル</th>
+                                <th>動画書籍</th>
                                 <th>いいね</th>
                                 <th>詳しく見る</th>
                                 <th>カテゴリー</th>
@@ -23,6 +24,7 @@
                                 <tr>
                                     <td>{{ $post->user->name }}</td>
                                     <td>{{ $post->title }}</td>
+                                    <td>ダミー動画サムネイル</td>
                                     @foreach ($post->likes as $like)
                                     @endforeach
                                     @if ($likes->LikeCheck(Auth::user()->id, $post->id))
