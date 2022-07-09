@@ -21,9 +21,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware(['auth','can:isAdmin'])->group(function(){
-    //管理者投稿追加ページ
+    //管理者投稿追加ページtest
 Route::resource('posts', PostController::class);
 });
+
 
 Route::get('/', function () {
     return redirect('home');
