@@ -32,7 +32,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-//ホーム画面
+//ホーム
 Route::get('home', [HomeController::class, 'index'])->name('home');
 
 //カテゴリー別一覧

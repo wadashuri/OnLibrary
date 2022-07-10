@@ -1,10 +1,3 @@
-// ページの先頭へ移動する
-$("#to-pagetop a").click(function () {
-    $('html, body').animate({
-        scrollTop: 0
-    }, 500);
-});
-
 //Ajax非同期通信いいね機能
 $(function () {
     let like = $('.like-toggle');

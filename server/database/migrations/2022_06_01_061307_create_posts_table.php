@@ -17,7 +17,10 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('title')->comment('タイトル');
+            $table->string('author')->comment('作者');
+            $table->text('video')->comment('YouTube動画');
             $table->text('comment')->comment('コメント');
+            $table->string('affiliate')->comment('アフィリエイト広告');
             $table->timestamps();
         });
     }

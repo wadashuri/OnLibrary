@@ -27,7 +27,6 @@ class CategoryController extends Controller
         $posts = Post::withCount('likes')->with('categories','user','likes')->get();
 
         return view('categorys.index', [
-            'title' => 'カテゴリー別投稿一覧',
             'posts' =>  $posts,
             'likes' => $likes,
         ]);

@@ -5326,13 +5326,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 /* provided dependency */ var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-// ページの先頭へ移動する
-$("#to-pagetop a").click(function () {
-  $('html, body').animate({
-    scrollTop: 0
-  }, 500);
-}); //Ajax非同期通信いいね機能
-
+//Ajax非同期通信いいね機能
 $(function () {
   var like = $('.like-toggle');
   var likePostid;
@@ -5413,13 +5407,26 @@ if (document.getElementById('example')) {
   \******************************/
 /***/ (() => {
 
-//自動でスライドが動くスライダー
-var swiper = new Swiper('.swiper', {
-  direction: 'horizontal',
-  loop: true,
-  speed: 300,
-  autoplay: {
-    delay: 10000
+var swiper = new Swiper(".swiper", {
+  // ページネーションが必要なら追加
+  pagination: {
+    el: ".swiper-pagination"
+  },
+  effect: "coverflow",
+  grabCursor: true,
+  centeredSlides: true,
+  slidesPerView: "2",
+  coverflowEffect: {
+    rotate: 50,
+    stretch: 0,
+    depth: 100,
+    modifier: 1,
+    slideShadows: true
+  },
+  // ナビボタンが必要なら追加
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev"
   }
 });
 

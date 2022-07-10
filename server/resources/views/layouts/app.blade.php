@@ -103,6 +103,19 @@
         <main class="py-4">
             @yield('content')
         </main>
+        <footer class="fixed-bottom">
+            <ul class="nav nav-pills nav-fill">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('home') }}">ホーム</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('categories.index') }}">マイページ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('likes.index') }}">マイライブラリ</a>
+                </li>
+            </ul>
+        </header>
     </div>
 </body>
 

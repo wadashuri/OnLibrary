@@ -1,54 +1,47 @@
 @extends('layouts.app')
 
-@section('title', $title)
+@section('title')
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ $title }}</div>
+        <h1>最近視聴した動画本</h1>
 
-                    <div class="card-body">
-                        <a href="{{ route('posts.create') }}">新規投稿</a>
-                        <table class="table">
-                            <tr>
-                                <th>名前</th>
-                                <th>タイトル</th>
-                                <th>動画書籍</th>
-                                <th>いいね</th>
-                                <th>詳しく見る</th>
-                                <th>カテゴリー</th>
-                            </tr>
-                            @forelse($posts as $post)
-                                <tr>
-                                    <td>{{ $post->user->name }}</td>
-                                    <td>{{ $post->title }}</td>
-                                    <td>ダミー動画サムネイル</td>
-                                    @foreach ($post->likes as $like)
-                                    @endforeach
-                                    @if ($likes->LikeCheck(Auth::user()->id, $post->id))
-                                        <td><a class="like-toggle liked" href=""
-                                                data-post-id="{{ $post->id }}">♡</a>{{ $post->likes_count }}</td>
-                                    @else
-                                        <td><a class="like-toggle like" href=""
-                                                data-post-id="{{ $post->id }}">♡</a>{{ $post->likes_count }}</td>
-                                    @endif
-                                    <td>[<a href="{{ route('posts.show', $post) }}">詳細</a>]</td>
-                                    @foreach ($post->categories as $category)
-                                        <td>{{ $category->category }}</td>
-                                </tr>
-                            @endforeach
-                            @empty
-                                <td>書き込みはありません。</td>
-                                @endforelse
-                            </table>
-                            <button id="to-pagetop" class="btn-primary"><a>▲ ページの先頭へ</a></button>
-                            <a href="{{ asset('test.jpg') }}" data-lightbox="group"><img src="{{ asset('test.jpg') }}"
-                                    width="100" class="border"></a>
-                        </div>
-                    </div>
-                </div>
+        <!-- Slider main container -->
+        <div class="swiper">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="swiper-slide">Slide 1</div>
+                <div class="swiper-slide">Slide 2</div>
+                <div class="swiper-slide">Slide 3</div>
+                <div class="swiper-slide">Slide 4</div>
             </div>
+            <!-- 必要に応じてページネーション -->
+            <div class="swiper-pagination"></div>
+            <!-- 必要に応じてナビボタン -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
         </div>
-    @endsection
+
+        <h1>最近追加した動画本</h1>
+
+        <!-- Slider main container -->
+        <div class="swiper">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="swiper-slide">Slide 1</div>
+                <div class="swiper-slide">Slide 2</div>
+                <div class="swiper-slide">Slide 3</div>
+                <div class="swiper-slide">Slide 4</div>
+            </div>
+            <!-- 必要に応じてページネーション -->
+            <div class="swiper-pagination"></div>
+            <!-- 必要に応じてナビボタン -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+
+
+    </div>
+@endsection

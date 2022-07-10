@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use Illuminate\Http\Request;
+use App\Models\Post;
+use App\Models\Like;
+
 class HomeController extends Controller
 {
     /**
@@ -21,6 +26,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+        $likes = new Like;
+        $posts = Post::withCount('likes')->with('categories','user','likes')->get();
+
+        return view('home', [
+            'posts' =>  $posts,
+            'likes' => $likes,
+        ]);
     }
 }
