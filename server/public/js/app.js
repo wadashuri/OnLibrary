@@ -5343,8 +5343,12 @@ $(function () {
       data: {
         'post_id': likePostid
       }
+    }) //通信成功した時の処理
+    .done(function (data) {
+      $this.toggleClass('liked'); //likedクラスのON/OFF切り替え。
     }) //通信失敗した時の処理
     .fail(function () {
+      window.location.href = "/register";
       console.log('fail');
     });
   });

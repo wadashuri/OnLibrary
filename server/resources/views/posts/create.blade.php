@@ -20,14 +20,28 @@
                                 @endforeach
                             </select>
                             <div>
-                                <label>
-                                    タイトル:
-                                    <input type="text" name="title">
-                                </label>
-                                <label>
-                                    コメント:
-                                    <textarea name="comment" rows="8" cols="40"></textarea>
-                                </label>
+                                <ul>
+                                    <li>
+                                        YouTube動画リンク:
+                                        <input type="text" name="video">
+                                    </li>
+                                    <li>
+                                        タイトル:
+                                        <input type="text" name="title">
+                                    </li>
+                                    <li>
+                                        作者:
+                                        <input type="text" name="author">
+                                    </li>
+                                    <li>
+                                        コメント:<br>
+                                        <textarea name="comment" rows="8" cols="40"></textarea>
+                                    </li>
+                                    <li>
+                                        アフィリエイトリンク:
+                                        <input type="text" name="affiliate">
+                                    </li>
+                                </ul>
                             </div>
 
                             <input type="submit" value="投稿">

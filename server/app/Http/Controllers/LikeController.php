@@ -8,12 +8,19 @@ use App\Models\Like;
 
 class LikeController extends Controller
 {
+
+    //未ログイン時はログインさせない
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     //いいねしている投稿の一覧ページ
     public function index()
     {
         $likes = Auth::user()->likes;
         return view('likes.index', [
-            'title' => 'いいね一覧',
+            'title' => 'ライブラリ',
             'likes' => $likes,
         ]);
     }

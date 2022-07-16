@@ -16,6 +16,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"></script>
 
+    <!-- BootstrapのJavascript読み込み -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+    </script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -25,6 +29,8 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.0/font/bootstrap-icons.css">
+
 </head>
 
 <body>
@@ -49,13 +55,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="{{ route('categories.index') }}">
-                                カテゴリー別投稿一覧
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link active" href="{{ route('likes.index') }}">
-                                いいね一覧
+                                ライブラリ
                             </a>
                         </li>
                     </ul>
@@ -81,8 +82,11 @@
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
-
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    {{-- あとで実装 --}}
+                                    {{-- <a class="dropdown-item" href="{{ route('categories.index') }}">
+                                        マイページ
+                                    </a> --}}
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -103,19 +107,16 @@
         <main class="py-4">
             @yield('content')
         </main>
-        <footer class="fixed-bottom">
+        <footer class="fixed-bottom bg-dark">
             <ul class="nav nav-pills nav-fill">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('home') }}">ホーム</a>
+                    <a class="nav-link text-light" href="{{ route('home') }}">ホーム</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('categories.index') }}">マイページ</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('likes.index') }}">マイライブラリ</a>
+                    <a class="nav-link text-light" href="{{ route('likes.index') }}">マイライブラリ</a>
                 </li>
             </ul>
-        </header>
+        </footer>
     </div>
 </body>
 

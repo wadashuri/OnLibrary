@@ -20,7 +20,7 @@ class CreatePostsTable extends Migration
             $table->string('author')->comment('作者');
             $table->text('video')->comment('YouTube動画');
             $table->text('comment')->comment('コメント');
-            $table->string('affiliate')->comment('アフィリエイト広告');
+            $table->string('affiliate')->comment('アフィリエイト広告')->nullable();;
             $table->timestamps();
         });
     }

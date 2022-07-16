@@ -14,25 +14,38 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
 
+        $search = $request->input('search');
+        $query = Post::query();
+        if(!empty($search)) {
+            $query->where('title', 'LIKE', "%{$search}%")
+                ->orWhere('author', 'LIKE', "%{$search}%");
+                $posts = $query->get();
+        }else{
+            $posts = Post::withCount('likes')->with('categories','user','likes')->inRandomOrder()->get();
+        }
         $likes = new Like;
-        $posts = Post::withCount('likes')->with('categories','user','likes')->get();
+
+        $order_likes = Post::withCount('likes')->with('categories','user','likes')->orderBy('likes_count', 'desc')->take(5)->get();
+
+        $order_posts = Post::withCount('likes')->with('categories','user','likes')->Latest()->get();
+        
 
         return view('home', [
             'posts' =>  $posts,
             'likes' => $likes,
+            'title' => 'Home',
+            'search' => $search,
+            'order_likes' => $order_likes,
+            'order_posts' => $order_posts,
         ]);
     }
 }

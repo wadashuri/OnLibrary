@@ -19,10 +19,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::middleware(['auth','can:isAdmin'])->group(function(){
-    //管理者投稿追加ページtest
-Route::resource('posts', PostController::class);
+    //管理者投稿追加ページ
+    Route::get('posts', [PostController::class, 'index'])->name('posts.index');
+    Route::post('posts', [PostController::class, 'store'])->name('posts.store');
+    Route::get('posts/create', [PostController::class, 'create'])->name('posts.create');
+    Route::delete('posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+    Route::patch('posts/{post}', [PostController::class, 'update'])->name('posts.update');
+    Route::get('posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
 });
 
 
@@ -35,10 +39,13 @@ Auth::routes();
 //ホーム
 Route::get('home', [HomeController::class, 'index'])->name('home');
 
-//カテゴリー別一覧
+//投稿詳細ページ
+Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
+
+//マイページ
 Route::resource('categories', CategoryController::class)->only('index');
 
-//いいね一覧、削除
+//ライブラリ
 Route::resource('likes', LikeController::class)->only('index','destroy');
 
 //ajax非同期いいね機能

@@ -15,7 +15,7 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        for($i=1; $i<=30; $i++) {
+        for($i=1; $i<=10; $i++) {
             $user[$i] = [
                 'name' => 'user' . $i,
                 'email' => 'user' .$i. '@example.com',

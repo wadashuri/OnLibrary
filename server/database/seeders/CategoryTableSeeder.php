@@ -17,19 +17,19 @@ class CategoryTableSeeder extends Seeder
         
             $categories = [
                 'id' => 1,
-                'category' => 'Php',
+                'category' => '投資',
             ];
         DB::table('categories')->insert($categories);
 
         $categories = [
             'id' => 2,
-            'category' => 'React',
+            'category' => '自己啓発',
         ];
         DB::table('categories')->insert($categories);
 
         $categories = [
             'id' => 3,
-            'category' => 'Laravel',
+            'category' => 'その他s',
         ];
         DB::table('categories')->insert($categories);
     }

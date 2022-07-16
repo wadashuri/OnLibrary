@@ -4,17 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Like;
 use App\Http\Requests\PostRequest;
 use App\Models\CategoryPost;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
-  //未ログイン時はログインさせない
-  public function __construct()
-  {
-    $this->middleware('auth');
-  }
   /**
    * Display a listing of the resource.
    *
@@ -54,8 +50,11 @@ class PostController extends Controller
   {
     Post::create([
       'user_id' => Auth::user()->id,
+      'video' => $request->video,
       'title' => $request->title,
+      'author' => $request->author,
       'comment' => $request->comment,
+      'affiliate' => $request->affiliate,
     ]);
     $post_id = Post::select('id')->latest()->first();
     CategoryPost::create([
@@ -75,10 +74,12 @@ class PostController extends Controller
    */
   public function show($id)
   {
+    $likes = new Like;
     $post = Post::find($id);
     return view('posts.show', [
       'title' => '投稿詳細',
       'post'  => $post,
+      'likes' => $likes,
     ]);
   }
 
