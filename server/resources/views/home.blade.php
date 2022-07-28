@@ -78,15 +78,6 @@
         </div>
 
         <h3 style="margin-top: 10px">動画本一覧</h3>
-        <div class="card" style="margin-bottom: 10px">
-            <div class="card-body">
-                <form class="d-flex" method="GET" action="{{ route('home') }}">
-                    <input class="form-control me-2" type="search" name="search" placeholder="検索キーワードを入力"
-                        value="@if (isset($search)) {{ $search }} @endif">
-                    <button class="btn btn-outline-secondary" type="submit">Search</button>
-                </form>
-            </div>
-        </div>
         {{-- ここから動画一覧 --}}
         <div class="row row-cols-1 row-cols-md-3 g-4">
             @forelse($posts as $post)

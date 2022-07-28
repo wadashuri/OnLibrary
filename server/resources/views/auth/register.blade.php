@@ -69,6 +69,7 @@
                             </div>
                         </div>
                     </form>
+                    <a class="nav-link" href="{{ route('login') }}">登録済みの方はコチラ</a>
                 </div>
             </div>
         </div>

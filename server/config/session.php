@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Str;
 
+use function Psy\sh;
+
 return [
 
     /*
@@ -31,7 +33,7 @@ return [
     |
     */
 
-    'lifetime' => env('SESSION_LIFETIME', 120),
+    'lifetime' => env('SESSION_LIFETIME', 10080),
 
     'expire_on_close' => false,
 

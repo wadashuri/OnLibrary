@@ -102,8 +102,16 @@
                     </ul>
                 </div>
             </div>
+            <div class="card" style="margin-bottom: 10px">
+                <div class="card-body">
+                    <form class="d-flex" method="GET" action="{{ route('search.index') }}">
+                        <input class="form-control me-2" type="search" name="search" placeholder="検索キーワードを入力"
+                            value="@if (isset($search)) {{ $search }} @endif">
+                        <button class="btn btn-outline-secondary" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
         </nav>
-
         <main class="py-4">
             @yield('content')
         </main>

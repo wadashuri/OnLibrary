@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -47,6 +48,9 @@ Route::resource('categories', CategoryController::class)->only('index');
 
 //ライブラリ
 Route::resource('likes', LikeController::class)->only('index','destroy');
+
+//検索
+Route::resource('search', SearchController::class)->only('index');
 
 //ajax非同期いいね機能
 Route::post('ajaxfavorite', [LikeController::class, 'ajaxfavorite'])->name('ajaxfavorite');

@@ -8,7 +8,7 @@
         <div class="row row-cols-2 row-cols-md-3">
             @forelse($likes as $like)
                 <div class="col">
-                    <div class="card">
+                    <div class="card" style="margin-top: 10px">
                         <div class="ratio ratio-4x3">
                             {!! $like->video !!}
                         </div>
