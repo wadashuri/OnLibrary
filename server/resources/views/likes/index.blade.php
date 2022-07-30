@@ -15,13 +15,17 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $like->title }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">作者：{{ $like->author }}</h6>
-                            <a href="{{ route('likes.show', $like) }}" class="btn btn-primary">詳細</a>
+                        </div>
+                        <div class="card-footer">
                             <div>
-                                <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#exampleModal" style="margin-top:10px">
+                                <a href="{{ route('likes.show', $like) }}" class="btn btn-primary">詳細</a>
+                                <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal"
+                                    data-target="#exampleModal" style="margin-top:10px">
                                     削除
                                 </button>
                                 <!-- モーダルの設定 -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalLabel">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -32,7 +36,8 @@
                                             </div>
                                             <div class="modal-body">
                                                 <p><small style="color: red">※一度削除した動画本は再度追加することができます</small></p>
-                                                <form method="post" class="delete" action="{{ route('likes.destroy', $like->id) }}">
+                                                <form method="post" class="delete"
+                                                    action="{{ route('likes.destroy', $like->id) }}">
                                                     @csrf
                                                     @method('delete')
                                                     <input type="submit" class="btn btn-danger" value="削除">
