@@ -7,7 +7,7 @@
     {{-- ここから動画一覧 --}}
     <div class="row row-cols-1 row-cols-md-3 g-4">
         @forelse($posts as $post)
-            <div class="col">
+            <div class="col" style="margin-bottom: 25px">
                 <div class="card h-100">
                     <div class="ratio ratio-16x9">
                         {!! $post->video !!}

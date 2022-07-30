@@ -7,7 +7,7 @@
         <p>{{ $title }} </p>
         <div class="row row-cols-2 row-cols-md-3">
             @forelse($likes as $like)
-                <div class="col" style="margin-top: 10px">
+                <div class="col" style="margin-bottom: 25px">
                     <div class="card h-100">
                         <div class="ratio ratio-16x9">
                             {!! $like->video !!}
