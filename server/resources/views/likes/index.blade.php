@@ -15,7 +15,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $like->title }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">作者：{{ $like->author }}</h6>
-                            <a href="{{ route('posts.show', $like) }}" class="btn btn-primary">詳細</a>
+                            <a href="{{ route('likes.show', $like) }}" class="btn btn-primary">詳細</a>
                             <div>
                                 <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#exampleModal" style="margin-top:10px">
                                     削除

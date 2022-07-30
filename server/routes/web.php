@@ -47,7 +47,7 @@ Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
 Route::resource('categories', CategoryController::class)->only('index');
 
 //ライブラリ
-Route::resource('likes', LikeController::class)->only('index','destroy');
+Route::resource('likes', LikeController::class)->only('index','show','destroy');
 
 //検索
 Route::resource('search', SearchController::class)->only('index');

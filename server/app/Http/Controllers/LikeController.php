@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Like;
+use App\Models\Post;
 
 class LikeController extends Controller
 {
@@ -24,6 +25,18 @@ class LikeController extends Controller
             'likes' => $likes,
         ]);
     }
+
+    public function show($id)
+  {
+    $likes = new Like;
+    $post = Post::find($id);
+    return view('likes.show', [
+      'title' => '投稿詳細',
+      'post'  => $post,
+      'likes' => $likes,
+    ]);
+  }
+
     //いいね機能
     public function ajaxfavorite(Request $request)
     {
