@@ -18,7 +18,7 @@ class PostController extends Controller
    */
   public function index()
   {
-    $posts = Auth::user()->posts->load('categories');
+    $posts = Post::with('categories')->latest()->get();
     return view('posts.index', [
       'title' => '自分の投稿',
       'posts' => $posts,
@@ -112,7 +112,7 @@ class PostController extends Controller
   {
     //コメントを編集
     $post = Post::find($id);
-    $post->update($request->only(['comment', 'title']));
+    $post->update($request->only(['comment', 'title','author', 'video','affiliate']));
     //カテゴリーを編集
     CategoryPost::where('post_id', $id)->update(['category_id' => $request->category_id]);
 

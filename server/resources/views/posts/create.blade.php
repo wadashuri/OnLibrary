@@ -22,8 +22,8 @@
                             <div>
                                 <ul>
                                     <li>
-                                        YouTube動画リンク:
-                                        <input type="text" name="video">
+                                        YouTube動画リンク:<br>
+                                        <textarea name="video" rows="8" cols="40"></textarea>
                                     </li>
                                     <li>
                                         タイトル:

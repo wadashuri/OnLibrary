@@ -15,7 +15,7 @@
                     <div class="swiper-slide">
                         <div class="Box">
                             <div class="card-group">
-                                <div class="ratio ratio-4x3">
+                                <div class="ratio ratio-16x9">
                                     {!! $order_like->video !!}
                                 </div>
                                 <div class="card-body">
@@ -52,7 +52,7 @@
                     <!-- Slides -->
                     <div class="swiper-slide">
                         <div class="card-group">
-                            <div class="ratio ratio-4x3">
+                            <div class="ratio ratio-16x9">
                                 {!! $order_post->video !!}
                             </div>
                             <div class="card-body">
