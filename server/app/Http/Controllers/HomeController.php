@@ -36,7 +36,7 @@ class HomeController extends Controller
 
         $order_likes = Post::withCount('likes')->with('categories','user','likes')->orderBy('likes_count', 'desc')->take(5)->get();
 
-        $order_posts = Post::withCount('likes')->with('categories','user','likes')->Latest()->get();
+        $order_posts = Post::withCount('likes')->with('categories','user','likes')->orderBy('created_at', 'desc')->take(5)->get();
         
 
         return view('home', [
