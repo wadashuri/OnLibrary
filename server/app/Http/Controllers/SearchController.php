@@ -17,7 +17,7 @@ class SearchController extends Controller
                 ->orWhere('author', 'LIKE', "%{$search}%");
                 $posts = $query->get();
         }else{
-            $posts = Post::with('categories','user','likes')->inRandomOrder()->get();
+            $posts = Post::with('categories', 'user', 'likes')->orderBy('created_at', 'desc')->take(6)->get();
         }
         
 

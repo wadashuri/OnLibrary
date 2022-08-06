@@ -115,7 +115,7 @@
         <main class="py-4">
             @yield('content')
         </main>
-        <footer class="fixed-bottom bg-dark">
+        {{-- <footer class="fixed-bottom bg-dark">
             <ul class="nav nav-pills nav-fill">
                 <li class="nav-item">
                     <a class="nav-link text-light" href="{{ route('home') }}">ホーム</a>
@@ -124,7 +124,7 @@
                     <a class="nav-link text-light" href="{{ route('likes.index') }}">マイライブラリ</a>
                 </li>
             </ul>
-        </footer>
+        </footer> --}}
     </div>
 </body>
 

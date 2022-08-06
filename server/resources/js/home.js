@@ -23,3 +23,37 @@ const swiper = new Swiper(".swiper", {
     prevEl: ".swiper-button-prev"
   }
 });
+
+
+jQuery(function() {
+	let documentHeight = jQuery(document).height();
+	let windowsHeight = jQuery(window).height();
+	let postNumNow = 6; /* 最初に表示されている記事数 */
+	let postNumAdd = 6; /* 追加する記事数 */
+	let flag = false;
+	jQuery(window).on("scroll", function() {
+		let scrollPosition = windowsHeight + jQuery(window).scrollTop();
+		if (scrollPosition >= documentHeight) {
+			if (!flag) {
+				flag = true;
+				jQuery.ajax({
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+					type: "POST",
+					url: "/ajaxaddpost",
+					data: {
+						post_num_now: postNumNow,
+						post_num_add: postNumAdd
+					},
+					success: function(response) {
+						jQuery("#list").append(response);
+						documentHeight = jQuery(document).height();
+						postNumNow += postNumAdd;
+						flag = false;
+					}
+				});
+			}
+		}
+	});
+});

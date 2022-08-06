@@ -22,30 +22,26 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+        $posts = Post::with('categories', 'user', 'likes')->orderBy('created_at', 'desc')->take(6)->get();
 
-        $search = $request->input('search');
-        $query = Post::query();
-        if(!empty($search)) {
-            $query->where('title', 'LIKE', "%{$search}%")
-                ->orWhere('author', 'LIKE', "%{$search}%");
-                $posts = $query->get();
-        }else{
-            $posts = Post::withCount('likes')->with('categories','user','likes')->inRandomOrder()->get();
-        }
         $likes = new Like;
 
-        $order_likes = Post::withCount('likes')->with('categories','user','likes')->orderBy('likes_count', 'desc')->take(5)->get();
-
-        $order_posts = Post::withCount('likes')->with('categories','user','likes')->orderBy('created_at', 'desc')->take(5)->get();
-        
+        $order_likes = Post::withCount('likes')->with('categories', 'user', 'likes')->orderBy('likes_count', 'desc')->take(5)->get();
 
         return view('home', [
             'posts' =>  $posts,
             'likes' => $likes,
             'title' => 'Home',
-            'search' => $search,
             'order_likes' => $order_likes,
-            'order_posts' => $order_posts,
         ]);
+    }
+
+    //いいね機能
+    public function ajaxaddpost(Request $request)
+    {
+        $offset = isset($_POST['post_num_now']) ? $_POST['post_num_now'] : 1;
+        $posts_per_page = isset($_POST['post_num_add']) ? $_POST['post_num_add'] : 0;
+        $posts = Post::offset($offset)->limit($posts_per_page)->orderBy('created_at', 'desc')->take(6)->get()->load('categories', 'user', 'likes');
+        return view('ajaxaddpost', ['posts' =>  $posts,]);
     }
 }

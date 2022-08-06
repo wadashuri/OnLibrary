@@ -40,6 +40,9 @@ Auth::routes();
 //ホーム
 Route::get('home', [HomeController::class, 'index'])->name('home');
 
+//ajax無限スクロール機能
+Route::post('ajaxaddpost', [HomeController::class, 'ajaxaddpost'])->name('ajaxaddpost');
+
 //投稿詳細ページ
 Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
 
