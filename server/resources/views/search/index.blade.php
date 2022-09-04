@@ -3,6 +3,15 @@
 @section('title', $title)
 
 @section('content')
+    <div class="card" style="margin-bottom: 10px">
+        <div class="card-body">
+            <form class="d-flex" method="GET" action="{{ route('search.index') }}">
+                <input class="form-control me-2" type="search" name="search" placeholder="検索キーワードを入力"
+                    value="@if (isset($search)) {{ $search }} @endif">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
     <h3 style="margin-top: 10px">動画本一覧</h3>
     {{-- ここから動画一覧 --}}
     <div id='list'>
@@ -11,7 +20,7 @@
                 <div class="col" style="margin-bottom: 25px">
                     <div class="card h-100">
                         <div class="ratio ratio-16x9">
-                            {!! $post->video !!}
+                            <iframe width="260" height="115" src="{{ str_replace('https://youtu.be/','https://www.youtube.com/embed/',$post->video) }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">{{ $post->title }}</h5>

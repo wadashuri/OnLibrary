@@ -45,15 +45,18 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('service') }}">
+                <a class="navbar-brand" href="{{ url('home') }}">
                     {{ config('app.name', 'Laravel') }}
+                </a>
+                <a href="{{ route('search.index') }}">
+                    <div><img alt="" height="26"
+                            src="{{ asset('/img/common/search.svg') }}" width="25"></div>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
@@ -68,7 +71,6 @@
                             </a>
                         </li>
                     </ul>
-
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
@@ -95,6 +97,11 @@
                                     {{-- <a class="dropdown-item" href="{{ route('categories.index') }}">
                                         マイページ
                                     </a> --}}
+                                    @can('isAdmin', Auth::user())
+                                    <a class="dropdown-item" href="{{ route('posts.index') }}">
+                                        管理者画面
+                                    </a>
+                                    @endcan
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -108,15 +115,6 @@
                             </li>
                         @endguest
                     </ul>
-                </div>
-            </div>
-            <div class="card" style="margin-bottom: 10px">
-                <div class="card-body">
-                    <form class="d-flex" method="GET" action="{{ route('search.index') }}">
-                        <input class="form-control me-2" type="search" name="search" placeholder="検索キーワードを入力"
-                            value="@if (isset($search)) {{ $search }} @endif">
-                        <button class="btn btn-outline-secondary" type="submit">Search</button>
-                    </form>
                 </div>
             </div>
         </nav>

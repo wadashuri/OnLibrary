@@ -10,7 +10,7 @@
                 <div class="col" style="margin-bottom: 25px">
                     <div class="card h-100">
                         <div class="ratio ratio-16x9">
-                            {!! $like->video !!}
+                            <iframe width="260" height="115" src="{{ str_replace('https://youtu.be/','https://www.youtube.com/embed/',$like->video) }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">{{ $like->title }}</h5>

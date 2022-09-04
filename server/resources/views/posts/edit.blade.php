@@ -13,36 +13,39 @@
                         <form method="POST" action="{{ route('posts.update', $post) }}">
                             @csrf
                             @method('patch')
-                            <div>
-                                <ul>
-                                    <li>
-                                        YouTube動画リンク:<br>
-                                        <textarea name="video" rows="8" cols="40">{{ $post->video }}</textarea>
-                                    </li>
-                                    <li>
-                                        タイトル:
-                                        <input type="text" name="title" value=" {{$post->title}}">
-                                    </li>
-                                    <li>
-                                        作者:
-                                        <input type="text" name="author" value=" {{$post->author}}">
-                                    </li>
-                                    <li>
-                                        コメント:<br>
-                                        <textarea name="comment" rows="8" cols="40">{{ $post->comment }}</textarea>
-                                    </li>
-                                    <li>
-                                        アフィリエイトリンク:
-                                        <input type="text" name="affiliate" value=" {{$post->affiliate}}">
-                                    </li>
-                                </ul>
-                            <select name="category_id" class="content_inquiry_category">
-                                @foreach ($categories as $value)
-                                    <option value="{{ $value->id }}" @if (old('category') == $value->id) selected @endif>
-                                        {{ $value->category }}</option>
-                                @endforeach
-                            </select>
-                            <input type="submit" value="更新">
+                                <table class="table">
+                                    <tbody>
+                                      <tr>
+                                        <th scope="row">YouTube動画リンク</th>
+                                        <td><input type="text" name="title" value="{{ $post->video }}"></td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">タイトル</th>
+                                        <td><input type="text" name="title" value="{{ $post->title }}"></td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">作者</th>
+                                        <td><input type="text" name="author" value="{{ $post->author }}"></td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">コメント</th>
+                                        <td><textarea name="comment" rows="8" cols="20">{{ $post->comment }}</textarea></td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">アフィリエイトリンク</th>
+                                        <td><input type="text" name="affiliate" value="{{ $post->affiliate }}"></td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                <select name="category_id" class="content_inquiry_category">
+                                    <option value="">選択してください</option>
+                                    @foreach ($categories as $value)
+                                        <option value="{{ $value->id }}"
+                                            @if(old('category_id') == $value->id) selected @endif>
+                                            {{ $value->category }}</option>
+                                    @endforeach
+                                </select>
+                                <input type="submit" value="更新">
                         </form>
                     </div>
                 </div>

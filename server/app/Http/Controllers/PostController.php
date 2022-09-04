@@ -114,7 +114,9 @@ class PostController extends Controller
     $post = Post::find($id);
     $post->update($request->only(['comment', 'title','author', 'video','affiliate']));
     //カテゴリーを編集
+    if(!empty($request->category_id)){
     CategoryPost::where('post_id', $id)->update(['category_id' => $request->category_id]);
+  }
 
     session()->flash('success', '投稿を編集しました');
     return redirect()->route('posts.index');

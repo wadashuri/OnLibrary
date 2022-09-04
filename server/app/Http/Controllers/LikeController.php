@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Like;
 use App\Models\Post;
+use App\Models\User;
 
 class LikeController extends Controller
 {
@@ -19,7 +20,9 @@ class LikeController extends Controller
     //いいねしている投稿の一覧ページ
     public function index()
     {
-        $likes = Auth::user()->likes;
+        // $likes = Auth::user()->likes->withPivot('created_at')->orderBy('created_at', 'desc')->take(6)->get();
+        $auth_id=Auth::id();
+        $likes = User::find($auth_id)->likes()->withPivot('created_at AS joined_at')->orderBy('joined_at', 'desc')->take(6)->get();
         return view('likes.index', [
             'title' => 'ライブラリ',
             'likes' => $likes,

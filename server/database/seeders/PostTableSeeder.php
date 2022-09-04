@@ -14,13 +14,13 @@ class PostTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 1; $i <= 5; $i++) {
+        for ($i = 1; $i <= 100; $i++) {
             $posts[$i] = [
                 'user_id' => $i,
                 'title' => 'タイトル' . $i,
                 'author' => '作者' . $i,
                 'comment' => 'コメント' . $i,
-                'video' => '<iframe width="260" height="115" src="https://www.youtube.com/embed/2ZtGl8mpg74" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
+                'video' => 'https://youtu.be/SSRnsxAua7c',
                 'affiliate' => 'https://amzn.to/3yD5Mhe',
             ];
         }
