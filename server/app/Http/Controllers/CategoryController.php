@@ -21,14 +21,57 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $likes = new Like;
-        $posts = Post::withCount('likes')->with('categories','user','likes')->get();
+        $categories = Category::all();
 
-        return view('categorys.index', [
-            'posts' =>  $posts,
-            'likes' => $likes,
+        return view('categories.index', [
+            'title' => 'カテゴリー一覧',
+            'categories' =>  $categories,
         ]);
     }
+
+    public function create()
+  {
+    $categories = Category::all();
+    return view('categories.create', [
+      'title' => '新規投稿',
+      'categories' => $categories,
+    ]);
+  }
+
+  public function store(Request $request)
+  {
+    Category::create([
+      'category' => $request->name,
+    ]);
+    return redirect()->route('categories.index');
+  }
+
+  public function edit($id)
+  {
+    // ルーティングパラメータで渡されたidを利用してインスタンスを取得
+    $categories = Category::find($id);
+    return view('categories.edit', [
+      'title' => '投稿編集',
+      'categories' => $categories,
+    ]);
+  }
+
+  public function update($id, Request $request)
+  {
+    //コメントを編集
+    $post = Category::find($id);
+    $post->update($request->only(['category']));
+    
+    return redirect()->route('categories.index');
+  }
+
+  public function destroy($id)
+  {
+    $post = Category::find($id);
+    $post->delete();
+   
+    return redirect()->route('categories.index');
+  }
 }

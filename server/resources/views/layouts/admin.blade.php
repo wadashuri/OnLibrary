@@ -45,7 +45,12 @@
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
                             <a class="nav-link active" href="{{ route('posts.index') }}">
-                                管理者投稿ページ
+                                投稿一覧
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{ route('categories.index') }}">
+                                カテゴリー一覧
                             </a>
                         </li>
                     </ul>
