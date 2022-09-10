@@ -6,11 +6,11 @@
     <div class="card" style="margin-bottom: 10px">
         <div class="card-body">
             <form class="d-flex" method="GET" action="{{ route('search.index') }}">
+                <a href="{{route("home")}}"><button class="btn btn-outline-secondary" type="button">＜</button></a>
                 <input class="form-control me-2" type="search" name="search" placeholder="検索キーワードを入力"
                     value="@if (isset($search)) {{ $search }} @endif">
                 <button class="btn btn-outline-secondary" type="submit">Search</button>
             </form>
-            <a href="{{route("home")}}"><button class="btn btn-outline-secondary" type="submit">＜</button></a>
         </div>
         <div class="card-footer">
             <!-- Button trigger modal -->
