@@ -13,11 +13,19 @@
                         <h1>{{ $title }}</h1>
                         <form method="POST" action="{{ route('posts.store') }}">
                             @csrf
+                            <h3>本カテゴリー</h3>
                             <select name="category" class="content_inquiry_category">
                                 @foreach ($categories as $value)
                                     <option value="{{ $value->id }}" @if (old('category') == $value->id) selected @endif>
                                         {{ $value->category }}</option>
                                 @endforeach
+                            </select>
+                            <h3>BookTuberカテゴリー</h3>
+                            <select name="booktuber" class="booktuber">
+                                @foreach ($book_tuber_categories as $value)
+                                <option value="{{ $value->id }}" @if (old('booktuber') == $value->id) selected @endif>
+                                    {{ $value->book_tuber_category }}</option>
+                                    @endforeach
                             </select>
                             <div>
                                 <ul>

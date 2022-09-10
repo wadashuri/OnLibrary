@@ -50,7 +50,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" href="{{ route('categories.index') }}">
-                                カテゴリー一覧
+                                本カテゴリー一覧
                             </a>
                         </li>
                     </ul>

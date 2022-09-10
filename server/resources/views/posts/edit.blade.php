@@ -37,6 +37,7 @@
                                       </tr>
                                     </tbody>
                                   </table>
+                                  <h3>本カテゴリー</h3>
                                 <select name="category_id" class="content_inquiry_category">
                                     <option value="">選択してください</option>
                                     @foreach ($categories as $value)
@@ -45,6 +46,15 @@
                                             {{ $value->category }}</option>
                                     @endforeach
                                 </select>
+                                <h3>BookTuberカテゴリー</h3>
+                                <select name="booktuber_category_id" class="content_inquiry_booktuber_category">
+                                  <option value="">選択してください</option>
+                                  @foreach ($book_tuber_categories as $value)
+                                      <option value="{{ $value->id }}"
+                                          @if(old('category_id') == $value->id) selected @endif>
+                                          {{ $value->book_tuber_category }}</option>
+                                  @endforeach
+                              </select>
                                 <input type="submit" value="更新">
                         </form>
                     </div>

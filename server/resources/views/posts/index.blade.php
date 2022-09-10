@@ -18,12 +18,13 @@
                                 <th>コメント</th>
                                 <th>編集を加える</th>
                                 <th>削除する</th>
-                                <th>カテゴリー</th>
+                                <th>本カテゴリー</th>
+                                <th>BookTuberカテゴリー</th>
                             </tr>
                             @forelse($posts as $post)
                                 <tr>
                                     <td>{{ $post->user->name }}</td>
-                                    <td>{{$post->title}}</td>
+                                    <td>{{ $post->title }}</td>
                                     <td>{!! nl2br(e($post->comment)) !!}</td>
                                     <td>[<a href="{{ route('posts.edit', $post) }}">編集</a>]</td>
                                     <td>
@@ -35,9 +36,12 @@
                                     </td>
                                     @foreach ($post->categories as $category)
                                         <td>{{ $category->category }}</td>
+                                    @endforeach
+                                    @foreach ($post->book_tuber_categories as $book_tuber_category)
+                                        <td>{{ $book_tuber_category->book_tuber_category }}</td>
                                 </tr>
                             @endforeach
-                            @empty
+                        @empty
                             <td>書き込みはありません。</td>
                             @endforelse
                         </table>

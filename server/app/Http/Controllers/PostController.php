@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\BookTuberCategory;
+use App\Models\BookTuberCategoryPost;
 use App\Models\Like;
 use App\Http\Requests\PostRequest;
 use App\Models\CategoryPost;
@@ -18,7 +20,7 @@ class PostController extends Controller
    */
   public function index()
   {
-    $posts = Post::with('categories')->latest()->get();
+    $posts = Post::with('categories','book_tuber_categories')->latest()->get();
     return view('posts.index', [
       'title' => '自分の投稿',
       'posts' => $posts,
@@ -33,9 +35,11 @@ class PostController extends Controller
   public function create()
   {
     $categories = Category::all();
+    $book_tuber_categories = BookTuberCategory::all();
     return view('posts.create', [
       'title' => '新規投稿',
       'categories' => $categories,
+      'book_tuber_categories' => $book_tuber_categories,
     ]);
   }
 
@@ -61,6 +65,8 @@ class PostController extends Controller
       'category_id' => $request->category,
       'post_id' => $post_id->id,
     ]);
+    $post_id = Post::find($post_id->id);
+    $post_id->book_tuber_categories()->sync($request->booktuber);
 
     session()->flash('success', '投稿を追加しました');
     return redirect()->route('posts.index');
@@ -94,10 +100,12 @@ class PostController extends Controller
     // ルーティングパラメータで渡されたidを利用してインスタンスを取得
     $post = Post::find($id);
     $categories = Category::all();
+    $book_tuber_categories = BookTuberCategory::all();
     return view('posts.edit', [
       'title' => '投稿編集',
       'post'  => $post,
       'categories' => $categories,
+      'book_tuber_categories' => $book_tuber_categories,
     ]);
   }
 
@@ -113,9 +121,14 @@ class PostController extends Controller
     //コメントを編集
     $post = Post::find($id);
     $post->update($request->only(['comment', 'title','author', 'video','affiliate']));
-    //カテゴリーを編集
+    //本カテゴリーを編集
     if(!empty($request->category_id)){
     CategoryPost::where('post_id', $id)->update(['category_id' => $request->category_id]);
+  }
+  //BookTuberカテゴリーを編集
+  if(!empty($request->booktuber_category_id)){
+    $post_id = Post::find($post->id);
+    $post_id->book_tuber_categories()->sync($request->booktuber_category_id);
   }
 
     session()->flash('success', '投稿を編集しました');

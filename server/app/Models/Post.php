@@ -21,6 +21,11 @@ class Post extends Model
     return $this->belongsToMany(Category::class, 'category_posts', 'post_id', 'category_id');
   }
 
+  public function book_tuber_categories()
+  {
+    return $this->belongsToMany(BookTuberCategory::class);
+  }
+
   public function likes()
   {
     return $this->belongsToMany(User::class, 'likes', 'post_id', 'user_id');
