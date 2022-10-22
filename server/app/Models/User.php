@@ -11,9 +11,6 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    public function sendPasswordResetNotification($token){
-        $this->notify(new PasswordReset($token));
-        }
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
@@ -46,6 +43,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function sendPasswordResetNotification($token){
+        $this->notify(new PasswordReset($token));
+        }
+
     //リレーションを設定
     public function posts()
     {
@@ -56,4 +57,5 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Post::class, 'likes', 'user_id', 'post_id');
     }
+    
 }
