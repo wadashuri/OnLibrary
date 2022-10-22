@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\Category;
 use App\Models\BookTuberCategory;
 
+
 class SearchController extends Controller
 {
     // 投稿追加機能
