@@ -17,6 +17,16 @@ class LikeController extends Controller
         $this->middleware('auth');
     }
 
+    //投稿追加機能
+    public function likeAjaxAddPost(Request $request)
+    {
+        $offset = isset($_POST['post_num_now']) ? $_POST['post_num_now'] : 1;
+        $posts_per_page = isset($_POST['post_num_add']) ? $_POST['post_num_add'] : 0;
+        $auth_id=Auth::id();
+        $likes = User::find($auth_id)->likes()->withPivot('created_at AS joined_at')->offset($offset)->limit($posts_per_page)->orderBy('joined_at', 'desc')->take(6)->get();
+        return view('likeAjaxAddPost', ['likes' =>  $likes,]);
+    }
+
     //いいねしている投稿の一覧ページ
     public function index()
     {

@@ -52,8 +52,17 @@ Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
 //ライブラリ
 Route::resource('likes', LikeController::class)->only('index', 'show', 'destroy');
 
+//ajax無限スクロール機能
+Route::post('likeAjaxAddPost', [LikeController::class, 'likeAjaxAddPost'])->name('like.ajax.add.post');
+
 //検索
 Route::resource('search', SearchController::class)->only('index');
+
+//検索結果
+Route::get('search/result', [SearchController::class, 'result'])->name('search.result');
+
+//ajax無限スクロール機能
+Route::post('searchAjaxAddPost', [SearchController::class, 'searchAjaxAddPost'])->name('searchAjaxAddPost');
 
 //ajax非同期いいね機能
 Route::post('ajaxfavorite', [LikeController::class, 'ajaxfavorite'])->name('ajaxfavorite');

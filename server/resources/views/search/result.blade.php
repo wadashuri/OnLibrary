@@ -5,7 +5,7 @@
 @section('content')
     <div class="card" style="margin-bottom: 10px">
         <div class="card-body">
-            <form class="d-flex" method="GET" action="{{ route('search.index') }}">
+            <form class="d-flex" method="GET" action="{{ route('search.result') }}">
                 <a href="{{route("home")}}"><button class="btn btn-outline-secondary" type="button">＜</button></a>
                 <input class="form-control me-2" type="search" name="search" placeholder="検索キーワードを入力"
                     value="@if (isset($search)) {{ $search }} @endif">
@@ -28,7 +28,7 @@
                         </div>
                         <div class="modal-body">
                             <div class="container">
-                                <form method="GET" action="{{ route('search.index') }}">
+                                <form method="GET" action="{{ route('search.result') }}">
                                     <div class="form-group">
                                         <label class="control-label">カテゴリー</label>
                                         @foreach ($categories as $value)
@@ -64,7 +64,7 @@
     </div>
     <h3 style="margin-top: 10px">動画本一覧</h3>
     {{-- ここから動画一覧 --}}
-    <div id='list' data-url="searchAjaxAddPost" data-search="{{$search}}" data-category_string="{{ $category_string }}" data-book_tuber_category_string="{{$book_tuber_category_string }}">
+    <div id='list' data-url="searchAjaxAddPost">
         <div class="row row-cols-1 row-cols-md-3 g-4">
             @forelse($posts as $post)
                 <div class="col" style="margin-bottom: 25px">

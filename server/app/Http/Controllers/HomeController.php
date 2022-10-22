@@ -36,7 +36,7 @@ class HomeController extends Controller
         ]);
     }
 
-    //いいね機能
+    //投稿追加機能
     public function ajaxaddpost(Request $request)
     {
         $offset = isset($_POST['post_num_now']) ? $_POST['post_num_now'] : 1;

@@ -5433,10 +5433,16 @@ var swiper = new Swiper(".swiper", {
     nextEl: ".swiper-button-next",
     prevEl: ".swiper-button-prev"
   }
-});
+}); //無限スクロール
+
 jQuery(function () {
   var documentHeight = jQuery(document).height();
   var windowsHeight = jQuery(window).height();
+  var list = document.getElementById('list');
+  var url = list.dataset.url;
+  var search = list.dataset.search;
+  var category_string = list.dataset.category_string;
+  var book_tuber_category_string = list.dataset.book_tuber_category_string;
   var postNumNow = 6;
   /* 最初に表示されている記事数 */
 
@@ -5455,10 +5461,13 @@ jQuery(function () {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
           },
           type: "POST",
-          url: "/ajaxaddpost",
+          url: url,
           data: {
             post_num_now: postNumNow,
-            post_num_add: postNumAdd
+            post_num_add: postNumAdd,
+            search: search,
+            category_string: category_string,
+            book_tuber_category_string: book_tuber_category_string
           },
           success: function success(response) {
             jQuery("#list").append(response);
@@ -5470,7 +5479,72 @@ jQuery(function () {
       }
     }
   });
-});
+}); //いいね無限スクロール
+// jQuery(function() {
+// 	let documentHeight = jQuery(document).height();
+// 	let windowsHeight = jQuery(window).height();
+// 	let postNumNow = 6; /* 最初に表示されている記事数 */
+// 	let postNumAdd = 6; /* 追加する記事数 */
+// 	let flag = false;
+// 	jQuery(window).on("scroll", function() {
+// 		let scrollPosition = windowsHeight + jQuery(window).scrollTop();
+// 		if (scrollPosition >= documentHeight) {
+// 			if (!flag) {
+// 				flag = true;
+// 				jQuery.ajax({
+//           headers: {
+//             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//         },
+// 					type: "POST",
+// 					url: "/likeAjaxAddPost",
+// 					data: {
+// 						post_num_now: postNumNow,
+// 						post_num_add: postNumAdd
+// 					},
+// 					success: function(response) {
+// 						jQuery("#like_list").append(response);
+// 						documentHeight = jQuery(document).height();
+// 						postNumNow += postNumAdd;
+// 						flag = false;
+// 					}
+// 				});
+// 			}
+// 		}
+// 	});
+// });
+//検索無限スクロール
+// jQuery(function() {
+// 	let documentHeight = jQuery(document).height();
+// 	let windowsHeight = jQuery(window).height();
+// 	let postNumNow = 6; /* 最初に表示されている記事数 */
+// 	let postNumAdd = 6; /* 追加する記事数 */
+// 	let flag = false;
+// 	jQuery(window).on("scroll", function() {
+// 		let scrollPosition = windowsHeight + jQuery(window).scrollTop();
+// 		if (scrollPosition >= documentHeight) {
+// 			if (!flag) {
+// 				flag = true;
+// 				jQuery.ajax({
+//           headers: {
+//             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//         },
+// 					type: "POST",
+// 					url: "/searchAjaxAddPost",
+// 					data: {
+// 						post_num_now: postNumNow,
+// 						post_num_add: postNumAdd
+// 					},
+// 					success: function(response) {
+// 						jQuery("#search_list").append(response);
+// 						documentHeight = jQuery(document).height();
+// 						postNumNow += postNumAdd;
+// 						flag = false;
+// 					}
+// 				});
+// 			}
+// 		}
+// 	});
+// });
 
 /***/ }),
 

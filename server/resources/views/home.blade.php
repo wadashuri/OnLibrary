@@ -42,7 +42,7 @@
 
         <h3 style="margin-top: 10px">新着動画本一覧</h3>
         {{-- ここから動画一覧 --}}
-        <div id='list'>
+        <div id='list' data-url="ajaxaddpost">
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 @forelse($posts as $post)
                     <div class="col" style="margin-bottom: 25px">
