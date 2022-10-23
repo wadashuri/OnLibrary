@@ -72,17 +72,17 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="{{ url('/service/privacy-policy/') }}" arget="_blank" rel="noopener noreferrer">
+                            <a class="nav-link active" href="{{ url('/service/privacy-policy/') }}" target="_blank" rel="noopener noreferrer">
                                 プライバシーポリシー
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="{{ url('/service/お問い合わせ/') }}" arget="_blank" rel="noopener noreferrer">
+                            <a class="nav-link active" href="{{ url('/service/お問い合わせ/') }}" target="_blank" rel="noopener noreferrer">
                                 お問合わせ
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="{{ url('/service/onlibraryの使い方/') }}" arget="_blank" rel="noopener noreferrer">
+                            <a class="nav-link active" href="{{ url('/service/onlibraryの使い方/') }}" target="_blank" rel="noopener noreferrer">
                                 OnLibraryとは
                             </a>
                         </li>
