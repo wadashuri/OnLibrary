@@ -71,6 +71,21 @@
                                 ライブラリ
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{ url('/service/privacy-policy/') }}">
+                                プライバシーポリシー
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{ url('/service/お問い合わせ/') }}">
+                                お問合わせ
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{ url('/service/onlibraryの使い方/') }}">
+                                OnLibraryとは
+                            </a>
+                        </li>
                     </ul>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
