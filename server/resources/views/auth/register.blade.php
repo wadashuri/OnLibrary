@@ -64,12 +64,12 @@
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                    {{ "登録" }}
                                 </button>
                             </div>
                         </div>
                     </form>
-                    <a class="nav-link" href="{{ route('login') }}">登録済みの方はコチラ</a>
+                    <a class="nav-link" href="{{ route('login') }}">すでに登録済みの方はコチラ</a>
                 </div>
             </div>
         </div>

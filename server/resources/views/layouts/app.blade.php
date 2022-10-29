@@ -71,21 +71,6 @@
                                 ライブラリ
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{{ url('/service/privacy-policy/') }}" target="_blank" rel="noopener noreferrer">
-                                プライバシーポリシー
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{{ url('/service/お問い合わせ/') }}" target="_blank" rel="noopener noreferrer">
-                                お問合わせ
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{{ url('/service/onlibraryの使い方/') }}" target="_blank" rel="noopener noreferrer">
-                                OnLibraryとは
-                            </a>
-                        </li>
                     </ul>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
@@ -113,6 +98,15 @@
                                     {{-- <a class="dropdown-item" href="{{ route('categories.index') }}">
                                         マイページ
                                     </a> --}}
+                                    <a class="dropdown-item" onclick="if(!confirm('外部サイトへ移動します、よろしいですか？')) return false;" href="{{ url('/service/privacy-policy/') }}" target="_blank" rel="noopener noreferrer">
+                                        プライバシーポリシー
+                                    </a>
+                                    <a class="dropdown-item" onclick="if(!confirm('外部サイトへ移動します、よろしいですか？')) return false;" href="{{ url('/service/お問い合わせ/') }}" target="_blank" rel="noopener noreferrer">
+                                        お問合わせ
+                                    </a>
+                                    <a class="dropdown-item" onclick="if(!confirm('外部サイトへ移動します、よろしいですか？')) return false;" href="{{ url('/service/onlibraryの使い方/') }}" target="_blank" rel="noopener noreferrer">
+                                        OnLibraryとは
+                                    </a>
                                     @can('isAdmin', Auth::user())
                                     <a class="dropdown-item" href="{{ route('posts.index') }}">
                                         管理者画面

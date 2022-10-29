@@ -26,7 +26,7 @@ $(function () {
             //通信失敗した時の処理
             .fail(
             function () {
-                window.location.href = "/register";
+                alert('会員登録(無料)して「いいね」機能を使おう！');
                 console.log('fail');
         });
     });
