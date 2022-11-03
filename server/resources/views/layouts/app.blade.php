@@ -173,16 +173,16 @@
         <footer class="fixed-bottom bg-white">
             <ul class="nav nav-pills nav-fill">
                 <li class="nav-item">
-                    <a class="nav-link link-secondary" href="{{ route('home') }}"><i
-                            class="bi bi-house-door"></i>ホーム</a>
+                    <a class="nav-link" href="{{ route('home') }}"><i
+                            class="bi bi-house-door" style="color: cornflowerblue;"></i>ホーム</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link-secondary" href="{{ route('search.index') }}"><i
-                            class="bi bi-search"></i>検索</a>
+                    <a class="nav-link" href="{{ route('search.index') }}"><i
+                            class="bi bi-search" style="color: cornflowerblue;"></i>検索</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link-secondary" href="{{ route('likes.index') }}"><i
-                            class="bi bi-book"></i>ライブラリ</a>
+                    <a class="nav-link" href="{{ route('likes.index') }}"><i
+                            class="bi bi-book" style="color: cornflowerblue;"></i>ライブラリ</a>
                 </li>
             </ul>
         </footer>

@@ -62,8 +62,6 @@
             </div>
         </div>
     </div>
-    <h3 style="margin-top: 10px">動画本一覧</h3>
-    {{-- ここから動画一覧 --}}
     <div id='list' data-url="searchAjaxAddPost" data-search="{{$search}}" data-category_string="{{ $category_string }}" data-book_tuber_category_string="{{$book_tuber_category_string }}">
         <div class="row row-cols-1 row-cols-md-3 g-4">
             @forelse($posts as $post)

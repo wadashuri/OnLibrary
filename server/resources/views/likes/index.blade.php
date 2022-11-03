@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container">
-        <p>{{ $title }} </p>
+        <h3 class="border-bottom"><i class="bi bi-book"></i>{{ $title }} </h3>
         <div id="list" data-url="likeAjaxAddPost">
             <div class="row row-cols-2 row-cols-md-3">
                 @forelse($likes as $like)
@@ -57,7 +57,7 @@
                         </div>
                     </div>
                 @empty
-                    <p>動画本がありません
+                    <p>ライブラリーに動画本がありません<br>
                         <a href="{{ route('home') }}" class="btn btn-primary">動画本を探す</a>
                     </p>
                 @endforelse
