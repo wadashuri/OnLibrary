@@ -15,7 +15,11 @@
                         <div class="Box">
                             <div class="card-group">
                                 <div class="ratio ratio-16x9">
-                                    <iframe width="260" height="115" src="{{ str_replace('https://youtu.be/','https://www.youtube.com/embed/',$order_like->video) }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    <iframe width="260" height="115"
+                                        src="{{ str_replace('https://youtu.be/', 'https://www.youtube.com/embed/', $order_like->video) }}"
+                                        title="YouTube video player" frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen></iframe>
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $order_like->title }}</h5>
@@ -48,7 +52,11 @@
                     <div class="col" style="margin-bottom: 25px">
                         <div class="card h-100">
                             <div class="ratio ratio-16x9">
-                                <iframe width="260" height="115" src="{{ str_replace('https://youtu.be/','https://www.youtube.com/embed/',$post->video) }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <iframe width="260" height="115"
+                                    src="{{ str_replace('https://youtu.be/', 'https://www.youtube.com/embed/', $post->video) }}"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">{{ $post->title }}</h5>

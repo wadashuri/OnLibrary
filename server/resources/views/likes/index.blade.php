@@ -18,12 +18,12 @@
                                     allowfullscreen></iframe>
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title">{{ $like->title }}</h5>
+                                <p class="card-title">{{ $like->title }}</p>
                                 <h6 class="card-subtitle mb-2 text-muted">作者：{{ $like->author }}</h6>
                             </div>
                             <div class="card-footer">
                                 <div>
-                                    <a href="{{ route('likes.show', $like) }}" class="btn btn-primary">詳細</a>
+                                    <a href="{{ route('posts.show', $like) }}" class="btn btn-primary">詳細</a>
                                     <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal"
                                         data-target="#exampleModal" style="margin-top:10px">
                                         削除
@@ -34,7 +34,7 @@
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">ライブラリから削除しますか？</h5>
+                                                    <h5 style="color: black" class="modal-title" id="exampleModalLabel">ライブラリから削除しますか？</h5>
                                                     <button type="button" class="close" data-dismiss="modal"
                                                         aria-label="閉じる">
                                                         <span aria-hidden="true">&times;</span>
@@ -63,5 +63,6 @@
                 @endforelse
             </div>
         </div>
+        {{-- @include('layouts.sidebar') --}}
     </div>
 @endsection

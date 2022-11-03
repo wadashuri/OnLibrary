@@ -1,6 +1,10 @@
 require('./bootstrap');
 require('./category.index');
 require('./home');
+require('./jquery/jquery-2.2.4.min');
+require('./bootstrap/popper.min');
+require('./active');
+require('./plugins/plugins');
 
 // import $ from 'jquery';
 // import ifExists from './utils/ifExists';
