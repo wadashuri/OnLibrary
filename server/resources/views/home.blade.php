@@ -18,11 +18,7 @@
                                     <iframe width="260" height="115" src="{{ str_replace('https://youtu.be/','https://www.youtube.com/embed/',$order_like->video) }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                 </div>
                                 <div class="card-body">
-                                    <h5 class="card-title">{{ $order_like->title }}</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">作者：{{ $order_like->author }}</h6>
-                                    @foreach ($order_like->categories as $category)
-                                        <p class="card-text">カテゴリー：{{ $category->category }}</p>
-                                    @endforeach
+                                    <p class="card-title">{{ $order_like->title }}</p>
                                 </div>
                                 <div class="card-footer">
                                     <small class="text-muted"><a href="{{ route('posts.show', $order_like->id) }}"
