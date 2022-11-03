@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container">
-        <h3 class="border-bottom"><i class="bi bi-hand-thumbs-up"></i>人気の動画本</h3>
+        <h3 class="border-bottom" style="margin-top: 10px"><i class="bi bi-hand-thumbs-up"></i>人気の動画本</h3>
         <!-- Slider main container -->
         <div class="swiper">
             <!-- Additional required wrapper -->
@@ -32,7 +32,7 @@
             <div class="swiper-button-next"></div>
         </div>
 
-        <h3 class="border-bottom" style="margin-top: 10px"><i class="bi bi-plus-square"></i>新着動画本一覧</h3>
+        <h3 class="border-bottom" style="margin-top: 20px"><i class="bi bi-plus-square"></i>新着動画本一覧</h3>
         {{-- ここから動画一覧 --}}
         <div id='list' data-url="ajaxaddpost">
             <div class="row row-cols-1 row-cols-md-3 g-4">
