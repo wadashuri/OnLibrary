@@ -18,11 +18,7 @@
                                     <iframe width="260" height="115" src="{{ str_replace('https://youtu.be/','https://www.youtube.com/embed/',$order_like->video) }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                 </div>
                                 <div class="card-body">
-                                    <p class="card-title">{{ $order_like->title }}</p>
-                                </div>
-                                <div class="card-footer">
-                                    <small class="text-muted"><a href="{{ route('posts.show', $order_like->id) }}"
-                                            class="btn btn-primary">詳細</a></small>
+                                    <a href="{{ route('posts.show', $order_like->id) }}" class="link-dark"><p class="card-title">{{ $order_like->title }}</p></a>
                                 </div>
                             </div>
                         </div>
