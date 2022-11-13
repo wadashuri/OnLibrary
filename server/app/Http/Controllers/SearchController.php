@@ -71,8 +71,8 @@ class SearchController extends Controller
     
     public function index(Request $request)
     {
-        $book_tuber_category = $request->book_tuber_category;
-        $category = $request->category;
+        $book_tuber_category = $request->book_tuber_category === null ? [] : $request->book_tuber_category;
+        $category = $request->category === null ? [] : $request->category;
         $search = $request->input('search');
         $category_string = null;
         $book_tuber_category_string = null;
@@ -112,6 +112,8 @@ class SearchController extends Controller
 
 
         return view('search.index', [
+            'book_tuber_category' => $book_tuber_category,
+            'category' => $category,
             'posts' =>  $posts,
             'title' => 'search',
             'search' => $search,

@@ -33,7 +33,7 @@
                                         <label class="control-label">カテゴリー</label>
                                         @foreach ($categories as $value)
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" name="category[]" value="{{ $value->id }}">
+                                                <input type="checkbox" name="category[]" value="{{ $value->id }}"  {{in_array(strval($value->id), $category )? 'checked' : '[]'}}>
                                                 <label class="custom-control-label"
                                                     for="custom-check-1">{{ $value->category }}</label>
                                             </div>
@@ -44,7 +44,7 @@
                                         @foreach ($book_tuber_categories as $value)
                                             <div class="custom-control custom-checkbox">
                                                 <input type="checkbox" name="book_tuber_category[]"
-                                                    value="{{ $value->id }}">
+                                                    value="{{ $value->id }}" {{in_array(strval($value->id), $book_tuber_category )? 'checked' : '[]' }}>
                                                 <label class="custom-control-label"
                                                     for="custom-check-1">{{ $value->book_tuber_category }}</label>
                                             </div>
