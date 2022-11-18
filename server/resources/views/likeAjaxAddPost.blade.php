@@ -1,5 +1,5 @@
 <div class="row row-cols-2 row-cols-md-3">
-    @foreach($likes as $like)
+    @foreach ($likes as $like)
         <div class="col" style="margin-bottom: 25px">
             <div class="card h-100">
                 <div class="ratio ratio-16x9">
@@ -27,19 +27,22 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel">ライブラリから削除しますか？</h5>
-                                        <button type="button" class="close" data-dismiss="modal"
-                                            aria-label="閉じる">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
                                         <p><small style="color: red">※一度削除した動画本は再度追加することができます</small></p>
-                                        <form method="post" class="delete"
-                                            action="{{ route('likes.destroy', $like->id) }}">
-                                            @csrf
-                                            @method('delete')
-                                            <input type="submit" class="btn btn-danger" value="削除">
-                                        </form>
+                                        {!! Form::open([
+                                            'route' => ['likes.destroy', $like->id],
+                                            'method' => 'delete',
+                                            'class' => 'btn-group',
+                                        ]) !!}
+                                        {!! Form::button('<span data-feather="trash"></span>削除', [
+                                            'type' => 'submit',
+                                            'class' => 'btn btn-sm btn-outline-danger',
+                                        ]) !!}
+                                        {!! Form::close() !!}
                                     </div>
                                 </div><!-- /.modal-content -->
                             </div><!-- /.modal-dialog -->

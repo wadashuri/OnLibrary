@@ -66,10 +66,9 @@ class LikeController extends Controller
         }
     }
 
-    public function destroy($post_id)
+    public function destroy(Request $request)
     {
-        $user_id = Auth::user()->id;
-        Like::where('post_id', $post_id)->where('user_id', $user_id)->delete();
+        Auth::user()->likes->find($request->like)->delete();
         session()->flash('success', '投稿を削除しました');
         return redirect()->route('likes.index');
     }

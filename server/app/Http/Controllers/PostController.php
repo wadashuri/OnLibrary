@@ -81,7 +81,7 @@ class PostController extends Controller
   public function show($id)
   {
     $likes = new Like;
-    $post = Post::find($id);
+    $post = Post::withCount('likes')->find($id);
     return view('posts.show', [
       'title' => '投稿詳細',
       'post'  => $post,

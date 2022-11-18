@@ -24,34 +24,13 @@
                             <div class="card-footer">
                                 <div>
                                     <a href="{{ route('likes.show', $like) }}" class="btn btn-primary">詳細</a>
-                                    <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal"
-                                        data-target="#exampleModal" style="margin-top:10px">
-                                        削除
-                                    </button>
-                                    <!-- モーダルの設定 -->
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                        aria-labelledby="exampleModalLabel">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">ライブラリから削除しますか？</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="閉じる">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p><small style="color: red">※一度削除した動画本は再度追加することができます</small></p>
-                                                    <form method="post" class="delete"
-                                                        action="{{ route('likes.destroy', $like->id) }}">
-                                                        @csrf
-                                                        @method('delete')
-                                                        <input type="submit" class="btn btn-danger" value="削除">
-                                                    </form>
-                                                </div>
-                                            </div><!-- /.modal-content -->
-                                        </div><!-- /.modal-dialog -->
-                                    </div><!-- /.modal -->
+                                    {!! Form::open(['route' => ['likes.destroy', $like], 'method' => 'delete', 'class' => 'btn-group']) !!}
+                                    {!! Form::button('<span data-feather="trash"></span>削除', [
+                                        'type' => 'submit',
+                                        'class' => 'btn btn-sm btn-outline-danger',
+                                        'onclick' => "if(!confirm('削除をしてもよろしいですか？ ※後からもう一度追加できます')) return false;",
+                                    ]) !!}
+                                    {!! Form::close() !!}
                                 </div>
                             </div>
                         </div>
