@@ -35,6 +35,7 @@ class HomeController extends Controller
             'order_likes' => $order_likes,
         ]);
     }
+    
 
     //投稿追加機能
     public function ajaxaddpost(Request $request)
