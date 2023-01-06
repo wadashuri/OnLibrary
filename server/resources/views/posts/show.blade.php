@@ -16,10 +16,10 @@
                         <p>{!! nl2br(e($post->comment)) !!}</p>
                         @if ($likes->LikeCheck(Auth::user()->id ?? '', $post->id))
                             <p class="card-text">ライブラリへ追加：<span type="button" class="like-toggle liked" href=""
-                                    data-post-id="{{ $post->id }}">♡</span>{{ $post->likes_count }}</p>
+                                    data-post-id="{{ $post->id }}">♡</span></p>
                         @else
                             <p class="card-text">ライブラリへ追加：<span class="like-toggle like" href=""
-                                    data-post-id="{{ $post->id }}">♡</span>{{ $post->likes_count }}</p>
+                                    data-post-id="{{ $post->id }}">♡</span></p>
                         @endif
                         @if (!empty($post->affiliate))
                             <p><a href="{{ $post->affiliate }}">{{ $post->title }}のご購入はこちらから</a></p>
