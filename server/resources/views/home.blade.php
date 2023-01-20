@@ -16,7 +16,7 @@
                             <a href="{{ route('posts.show', $order_like) }}" class="text-decoration-none link-secondary">
                                 <div class="card h-100">
                                     <div class="ratio ratio-16x9">
-                                        <img src="{{ str_replace('youtu.be/', 'i.ytimg.com/vi/', $order_like->video) }}/hq720.jpg"
+                                        <img src="{{ str_replace('youtu.be/', 'i.ytimg.com/vi/', $order_like->video) }}/hqdefault.jpg"
                                             alt="{{ $order_like->title }}">
                                     </div>
                                     <div class="card-body">
@@ -44,7 +44,7 @@
                         <a href="{{ route('posts.show', $post) }}" class="text-decoration-none link-secondary">
                             <div class="card h-100">
                                 <div class="ratio ratio-16x9">
-                                    <img src="{{ str_replace('youtu.be/', 'i.ytimg.com/vi/', $post->video) }}/hq720.jpg"
+                                    <img src="{{ str_replace('youtu.be/', 'i.ytimg.com/vi/', $post->video) }}/hqdefault.jpg"
                                         alt="{{ $post->title }}">
                                 </div>
                                 <div class="card-body">
