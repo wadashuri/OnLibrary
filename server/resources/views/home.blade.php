@@ -37,26 +37,27 @@
 
         <h3 class="border-bottom" style="margin-top: 20px"><i class="bi bi-plus-square"></i>新着動画本一覧</h3>
         {{-- ここから動画一覧 --}}
-        <div id='list' data-url="ajaxaddpost">
-            <div class="row row-cols-1 row-cols-md-3 g-4">
-                @forelse($posts as $post)
-                    <div class="col" style="margin-bottom: 25px">
-                        <a href="{{ route('posts.show', $post) }}" class="text-decoration-none link-secondary">
-                            <div class="card h-100">
-                                <div class="ratio ratio-16x9">
-                                    <img src="{{ str_replace('youtu.be/', 'i.ytimg.com/vi/', $post->video) }}/hqdefault.jpg"
-                                        alt="{{ $post->title }}"  class="h-100" style="object-fit: cover;">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ $post->title }}</h5>
-                                </div>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            @forelse($posts as $post)
+                <div class="col" style="margin-bottom: 25px">
+                    <a href="{{ route('posts.show', $post) }}" class="text-decoration-none link-secondary">
+                        <div class="card h-100">
+                            <div class="ratio ratio-16x9">
+                                <img src="{{ str_replace('youtu.be/', 'i.ytimg.com/vi/', $post->video) }}/hqdefault.jpg"
+                                    alt="{{ $post->title }}" class="h-100" style="object-fit: cover;">
                             </div>
-                        </a>
-                    </div>
-                @empty
-                    <p>検索結果に一致する動画本はありません。</p>
-                @endforelse
-            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $post->title }}</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            @empty
+                <p>検索結果に一致する動画本はありません。</p>
+            @endforelse
+        </div>
+        <div class="text-center">
+            <a href="{{ route('search.index') }}" class="btn btn-outline-secondary mb-5">その他の動画本を検索する</a>
         </div>
     </div>
 @endsection

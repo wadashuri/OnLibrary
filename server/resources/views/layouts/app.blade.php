@@ -46,147 +46,159 @@
 
 <body>
     <div id="app">
-        @if (empty(strstr(url()->current(), 'search')))
-            <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-                <div class="container">
-                    <a class="navbar-brand" href="{{ url('home') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <!-- Left Side Of Navbar -->
-                        <ul class="navbar-nav me-auto">
-                            <li class="nav-item">
-                                <a class="nav-link text-black" href="{{ route('home') }}"><i
-                                        class="bi bi-house-door"></i>ホーム</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-black" href="{{ route('search.index') }}"><i
-                                        class="bi bi-search"></i>検索</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-black" href="{{ route('likes.index') }}"><i
-                                        class="bi bi-book"></i>ライブラリ</a>
-                            </li>
-                        </ul>
-                        <!-- Right Side Of Navbar -->
-                        <ul class="navbar-nav ms-auto">
-                            <!-- Authentication Links -->
-                            @guest
-                                <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="" role="button"
-                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        <i class="bi bi-door-open"></i>{{ __('Register') }}
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm d-none d-md-block">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url('home') }}">
+                    {{ config('app.name', 'Laravel') }}
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-black" href="{{ route('home') }}"><i
+                                    class="bi bi-house-door"></i>ホーム</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-black" href="{{ route('search.index') }}"><i
+                                    class="bi bi-search"></i>検索</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-black" href="{{ route('likes.index') }}"><i
+                                    class="bi bi-book"></i>ライブラリ</a>
+                        </li>
+                    </ul>
+                    <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav ms-auto">
+                        <!-- Authentication Links -->
+                        @guest
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <i class="bi bi-door-open"></i>{{ __('Register') }}
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('register') }}"><i
+                                            class="bi bi-door-open"></i>{{ __('Register') }}</a>
+                                    <a class="dropdown-item" href="{{ route('login') }}"><i
+                                            class="bi bi-box-arrow-in-right"></i>{{ __('Login') }}</a>
+                                    <a class="dropdown-item" onclick="if(!confirm('外部サイトへ移動します、よろしいですか？')) return false;"
+                                        href="{{ url('/service/privacy-policy/') }}" target="_blank"
+                                        rel="noopener noreferrer">
+                                        <i class="bi bi-card-text"></i>
+                                        プライバシーポリシー
                                     </a>
-                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('register') }}"><i
-                                                class="bi bi-door-open"></i>{{ __('Register') }}</a>
-                                        <a class="dropdown-item" href="{{ route('login') }}"><i
-                                                class="bi bi-box-arrow-in-right"></i>{{ __('Login') }}</a>
-                                        <a class="dropdown-item"
-                                            onclick="if(!confirm('外部サイトへ移動します、よろしいですか？')) return false;"
-                                            href="{{ url('/service/privacy-policy/') }}" target="_blank"
-                                            rel="noopener noreferrer">
-                                            <i class="bi bi-card-text"></i>
-                                            プライバシーポリシー
-                                        </a>
-                                        <a class="dropdown-item"
-                                            onclick="if(!confirm('外部サイトへ移動します、よろしいですか？')) return false;"
-                                            href="{{ url('/service/お問い合わせ/') }}" target="_blank" rel="noopener noreferrer">
-                                            <i class="bi bi-chat-right-text"></i>
-                                            お問合わせ
-                                        </a>
-                                        <a class="dropdown-item"
-                                            onclick="if(!confirm('外部サイトへ移動します、よろしいですか？')) return false;"
-                                            href="{{ url('/service/onlibraryの使い方/') }}" target="_blank"
-                                            rel="noopener noreferrer">
-                                            <i class="bi bi-filter-square"></i>
-                                            OnLibraryとは
-                                        </a>
-                                    </div>
-                                </li>
-                            @else
-                                <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        <i class="bi bi-person-fill"></i>
-                                        {{ Auth::user()->name }}
+                                    <a class="dropdown-item" onclick="if(!confirm('外部サイトへ移動します、よろしいですか？')) return false;"
+                                        href="{{ url('/service/お問い合わせ/') }}" target="_blank" rel="noopener noreferrer">
+                                        <i class="bi bi-chat-right-text"></i>
+                                        お問合わせ
                                     </a>
-                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                        {{-- あとで実装 --}}
-                                        {{-- <a class="dropdown-item" href="{{ route('categories.index') }}">
+                                    <a class="dropdown-item" onclick="if(!confirm('外部サイトへ移動します、よろしいですか？')) return false;"
+                                        href="{{ url('/service/onlibraryの使い方/') }}" target="_blank"
+                                        rel="noopener noreferrer">
+                                        <i class="bi bi-filter-square"></i>
+                                        OnLibraryとは
+                                    </a>
+                                </div>
+                            </li>
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <i class="bi bi-person-fill"></i>
+                                    {{ Auth::user()->name }}
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    {{-- あとで実装 --}}
+                                    {{-- <a class="dropdown-item" href="{{ route('categories.index') }}">
                                         マイページ
                                     </a> --}}
-                                        <a class="dropdown-item"
-                                            onclick="if(!confirm('外部サイトへ移動します、よろしいですか？')) return false;"
-                                            href="{{ url('/service/privacy-policy/') }}" target="_blank"
-                                            rel="noopener noreferrer">
-                                            <i class="bi bi-card-text"></i>
-                                            プライバシーポリシー
+                                    <a class="dropdown-item" onclick="if(!confirm('外部サイトへ移動します、よろしいですか？')) return false;"
+                                        href="{{ url('/service/privacy-policy/') }}" target="_blank"
+                                        rel="noopener noreferrer">
+                                        <i class="bi bi-card-text"></i>
+                                        プライバシーポリシー
+                                    </a>
+                                    <a class="dropdown-item" onclick="if(!confirm('外部サイトへ移動します、よろしいですか？')) return false;"
+                                        href="{{ url('/service/お問い合わせ/') }}" target="_blank" rel="noopener noreferrer">
+                                        <i class="bi bi-chat"></i>
+                                        お問合わせ
+                                    </a>
+                                    <a class="dropdown-item" onclick="if(!confirm('外部サイトへ移動します、よろしいですか？')) return false;"
+                                        href="{{ url('/service/onlibraryの使い方/') }}" target="_blank"
+                                        rel="noopener noreferrer">
+                                        <i class="bi bi-filter-square"></i>
+                                        OnLibraryとは
+                                    </a>
+                                    @can('isAdmin', Auth::user())
+                                        <a class="dropdown-item" href="{{ route('posts.index') }}">
+                                            <i class="bi bi-gear"></i>
+                                            管理者画面
                                         </a>
-                                        <a class="dropdown-item"
-                                            onclick="if(!confirm('外部サイトへ移動します、よろしいですか？')) return false;"
-                                            href="{{ url('/service/お問い合わせ/') }}" target="_blank"
-                                            rel="noopener noreferrer">
-                                            <i class="bi bi-chat"></i>
-                                            お問合わせ
-                                        </a>
-                                        <a class="dropdown-item"
-                                            onclick="if(!confirm('外部サイトへ移動します、よろしいですか？')) return false;"
-                                            href="{{ url('/service/onlibraryの使い方/') }}" target="_blank"
-                                            rel="noopener noreferrer">
-                                            <i class="bi bi-filter-square"></i>
-                                            OnLibraryとは
-                                        </a>
-                                        @can('isAdmin', Auth::user())
-                                            <a class="dropdown-item" href="{{ route('posts.index') }}">
-                                                <i class="bi bi-gear"></i>
-                                                管理者画面
-                                            </a>
-                                        @endcan
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
+                                    @endcan
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            <i class="bi bi-box-arrow-left"></i>
-                                            {{ __('Logout') }}
-                                        </a>
+                                        <i class="bi bi-box-arrow-left"></i>
+                                        {{ __('Logout') }}
+                                    </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                            class="d-none">
-                                            @csrf
-                                        </form>
-                                    </div>
-                                </li>
-                            @endguest
-                        </ul>
-                    </div>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
+                    </ul>
                 </div>
-            </nav>
-        @endif
+            </div>
+        </nav>
         <main class="py-4">
             @yield('content')
         </main>
-        <footer class="fixed-bottom bg-white">
-            <ul class="nav nav-pills nav-fill">
+        <footer class="fixed-bottom bg-white d-md-none">
+            <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('home') }}"><i
-                            class="bi bi-house-door" style="color: cornflowerblue;"></i>ホーム</a>
+                    <a class="nav-link {{ Request::routeIs('home') ? 'active' : '' }}  link-secondary"
+                        href="{{ route('home') }}"><i class="bi bi-house-door" style="color: gray;"></i>ホーム</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('search.index') }}"><i
-                            class="bi bi-search" style="color: cornflowerblue;"></i>検索</a>
+                    <a class="nav-link link-secondary {{ Request::routeIs('search.index') ? 'active' : '' }}"
+                        href="{{ route('search.index') }}"><i class="bi bi-search" style="color: gray;"></i>検索</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('likes.index') }}"><i
-                            class="bi bi-book" style="color: cornflowerblue;"></i>ライブラリ</a>
+                    <a class="nav-link link-secondary {{ Request::routeIs('likes.index') ? 'active' : '' }}"
+                        href="{{ route('likes.index') }}"><i class="bi bi-book" style="color: gray;"></i>ライブラリ</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle link-secondary" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-expanded="false"><i class="bi bi-door-open" style="color: gray;"></i>{{ __('Register') }}</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ route('register') }}"><i
+                                    class="bi bi-door-open"></i>{{ __('Register') }}</a></li>
+                        <li><a class="dropdown-item" href="{{ route('login') }}"><i
+                                    class="bi bi-box-arrow-in-right"></i>{{ __('Login') }}</a></li>
+                        <li><a class="dropdown-item" onclick="if(!confirm('外部サイトへ移動します、よろしいですか？')) return false;"
+                                href="{{ url('/service/privacy-policy/') }}"><i class="bi bi-card-text"></i>
+                                プライバシーポリシー</a></li>
+                        <li><a class="dropdown-item" onclick="if(!confirm('外部サイトへ移動します、よろしいですか？')) return false;"
+                                href="{{ url('/service/onlibraryの使い方/') }}"><i class="bi bi-card-text"></i>
+                                OnLibraryとは</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" onclick="if(!confirm('外部サイトへ移動します、よろしいですか？')) return false;"
+                                href="{{ url('/service/お問い合わせ/') }}"><i class="bi bi-chat-right-text"></i>
+                                お問合わせ</a></li>
+                    </ul>
                 </li>
             </ul>
         </footer>
     </div>
 </body>
-
 </html>
