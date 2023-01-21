@@ -65,7 +65,7 @@
     <div id='list' data-url="searchAjaxAddPost" data-search="{{ $search }}"
         data-category_string="{{ $category_string }}" data-book_tuber_category_string="{{ $book_tuber_category_string }}">
         <div class="row row-cols-1 row-cols-md-3 g-4">
-            @forelse($posts as $post)
+            @foreach($posts as $post)
                 <div class="col" style="margin-bottom: 25px">
                     <a href="{{ route('posts.show', $post) }}" class="text-decoration-none link-secondary">
                         <div class="card h-100">
@@ -83,8 +83,6 @@
                         </div>
                     </a>
                 </div>
-            @empty
-                <p>検索結果に一致する動画本はありません。</p>
-            @endforelse
+            @endforeach
         </div>
     @endsection

@@ -23,7 +23,7 @@ class CategoryController extends Controller
     {
         $categories = Category::all();
 
-        return view('categories.index', [
+        return view('category.index', [
             'title' => 'カテゴリー一覧',
             'categories' =>  $categories,
         ]);
@@ -32,7 +32,7 @@ class CategoryController extends Controller
     public function create()
   {
     $categories = Category::all();
-    return view('categories.create', [
+    return view('category.create', [
       'title' => '新規投稿',
       'categories' => $categories,
     ]);
@@ -50,7 +50,7 @@ class CategoryController extends Controller
   {
     // ルーティングパラメータで渡されたidを利用してインスタンスを取得
     $categories = Category::find($id);
-    return view('categories.edit', [
+    return view('category.edit', [
       'title' => '投稿編集',
       'categories' => $categories,
     ]);

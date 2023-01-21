@@ -5470,6 +5470,7 @@ jQuery(function () {
             book_tuber_category_string: book_tuber_category_string
           },
           success: function success(response) {
+            crossOriginIsolated.log(1);
             jQuery("#list").append(response);
             documentHeight = jQuery(document).height();
             postNumNow += postNumAdd;

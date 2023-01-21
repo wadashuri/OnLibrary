@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\BookTuberCategory;
-use App\Models\BookTuberCategoryPost;
 use App\Models\Like;
 use App\Http\Requests\PostRequest;
 use App\Models\CategoryPost;
@@ -21,7 +20,7 @@ class PostController extends Controller
   public function index()
   {
     $posts = Post::with('categories','book_tuber_categories')->latest()->get();
-    return view('posts.index', [
+    return view('post.index', [
       'title' => '自分の投稿',
       'posts' => $posts,
     ]);
@@ -36,7 +35,7 @@ class PostController extends Controller
   {
     $categories = Category::all();
     $book_tuber_categories = BookTuberCategory::all();
-    return view('posts.create', [
+    return view('post.create', [
       'title' => '新規投稿',
       'categories' => $categories,
       'book_tuber_categories' => $book_tuber_categories,
@@ -82,7 +81,7 @@ class PostController extends Controller
   {
     $likes = new Like;
     $post = Post::withCount('likes')->find($id);
-    return view('posts.show', [
+    return view('post.show', [
       'title' => '投稿詳細',
       'post'  => $post,
       'likes' => $likes,
@@ -101,7 +100,7 @@ class PostController extends Controller
     $post = Post::find($id);
     $categories = Category::all();
     $book_tuber_categories = BookTuberCategory::all();
-    return view('posts.edit', [
+    return view('post.edit', [
       'title' => '投稿編集',
       'post'  => $post,
       'categories' => $categories,

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Like;
-use App\Models\Post;
 use App\Models\User;
 
 class LikeController extends Controller
@@ -24,7 +23,7 @@ class LikeController extends Controller
         $posts_per_page = isset($_POST['post_num_add']) ? $_POST['post_num_add'] : 0;
         $auth_id=Auth::id();
         $likes = User::find($auth_id)->likes()->withPivot('created_at AS joined_at')->offset($offset)->limit($posts_per_page)->orderBy('joined_at', 'desc')->take(6)->get();
-        return view('likeAjaxAddPost', ['likes' =>  $likes,]);
+        return view('api.like_add_post', ['likes' =>  $likes,]);
     }
 
     //いいねしている投稿の一覧ページ
@@ -33,7 +32,7 @@ class LikeController extends Controller
         // $likes = Auth::user()->likes->withPivot('created_at')->orderBy('created_at', 'desc')->take(6)->get();
         $auth_id=Auth::id();
         $likes = User::find($auth_id)->likes()->withPivot('created_at AS joined_at')->orderBy('joined_at', 'desc')->take(6)->get();
-        return view('likes.index', [
+        return view('like.index', [
             'title' => 'ライブラリ',
             'likes' => $likes,
         ]);

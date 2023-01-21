@@ -36,7 +36,7 @@ Route::group([
 ], function () {
 
     # ライブラリ
-    Route::resource('likes', LikeController::class)->only('index', 'destroy');
+    Route::resource('likes', LikeController::class)->only('index', 'show','destroy');
 
     # 権限のある管理者のみアクセスできるルート
     Route::middleware(['auth', 'can:isAdmin'])->group(function () {
@@ -61,8 +61,6 @@ Route::resource('search', SearchController::class)->only('index');
 /**
  * Api
  */
-# ajax無限スクロール機能
-Route::post('ajaxaddpost', [HomeController::class, 'ajaxaddpost'])->name('ajaxaddpost');
 
 # ajax非同期いいね機能
 Route::post('ajaxfavorite', [LikeController::class, 'ajaxfavorite'])->name('ajaxfavorite');

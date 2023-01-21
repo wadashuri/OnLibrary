@@ -35,14 +35,4 @@ class HomeController extends Controller
             'order_likes' => $order_likes,
         ]);
     }
-    
-
-    //投稿追加機能
-    public function ajaxaddpost(Request $request)
-    {
-        $offset = isset($_POST['post_num_now']) ? $_POST['post_num_now'] : 1;
-        $posts_per_page = isset($_POST['post_num_add']) ? $_POST['post_num_add'] : 0;
-        $posts = Post::offset($offset)->limit($posts_per_page)->orderBy('created_at', 'desc')->take(6)->get()->load('categories', 'user', 'likes');
-        return view('ajaxaddpost', ['posts' =>  $posts,]);
-    }
 }

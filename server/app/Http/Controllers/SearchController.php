@@ -23,7 +23,7 @@ class SearchController extends Controller
         $search = isset($_POST['search']) ? $_POST['search'] : null;
 
         return view(
-            'searchAjaxAddPost',
+            'api.search_add_post',
             compact('search'),
             [
                 'title' => 'search',
