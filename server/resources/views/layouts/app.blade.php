@@ -164,24 +164,24 @@
         <footer class="fixed-bottom bg-white d-md-none">
             <ul class="nav nav-tabs justify-content-between">
                 <li class="nav-item">
-                    <a class="nav-link p-1 {{ Request::routeIs('home') ? 'active' : '' }}  link-secondary"
+                    <a class="nav-link p-0 py-2 {{ Request::routeIs('home') ? 'active' : '' }}  link-secondary"
                         href="{{ route('home') }}"><i class="bi bi-house-door" style="color: gray;"></i>ホーム</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link p-1 link-secondary {{ Request::routeIs('search.index') ? 'active' : '' }}"
+                    <a class="nav-link p-0 py-2 link-secondary {{ Request::routeIs('search.index') ? 'active' : '' }}"
                         href="{{ route('search.index') }}"><i class="bi bi-search" style="color: gray;"></i>検索</a>
                 </li>
                 <li class="nav-item">
                     @guest
-                        <a class="nav-link p-1 link-secondary {{ Request::routeIs('likes.index') ? 'active' : '' }}"
+                        <a class="nav-link p-0 py-2 link-secondary {{ Request::routeIs('likes.index') ? 'active' : '' }}"
                         onclick="if(!confirm('この機能は会員登録が必要です、移動しますか？')) return false;" href="{{ route('likes.index') }}"><i class="bi bi-book" style="color: gray;"></i>ライブラリ</a>
                     @else
-                        <a class="nav-link p-1 link-secondary {{ Request::routeIs('likes.index') ? 'active' : '' }}"
+                        <a class="nav-link p-0 py-2 link-secondary {{ Request::routeIs('likes.index') ? 'active' : '' }}"
                             href="{{ route('likes.index') }}"><i class="bi bi-book" style="color: gray;"></i>ライブラリ</a>
                     @endguest
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link p-1 dropdown-toggle link-secondary" data-bs-toggle="dropdown" href="#"
+                    <a class="nav-link p-0 py-2 dropdown-toggle link-secondary" data-bs-toggle="dropdown" href="#"
                         role="button" aria-expanded="false"><i class="bi bi-door-open"
                             style="color: gray;"></i>会員登録</a>
                     <ul class="dropdown-menu">
