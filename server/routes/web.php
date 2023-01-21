@@ -36,24 +36,26 @@ Route::get('home', [HomeController::class, 'index'])->name('home');
 # 投稿詳細ページ
 Route::resource('posts', PostController::class)->only('show');
 
-# ライブラリ
-Route::resource('likes', LikeController::class)->only('index', 'destroy');
-
 # 検索
 Route::resource('search', SearchController::class)->only('index');
 
+# login後
+Route::group([
+    'middleware' => 'auth:web'
+], function () {
 
-/**
- * Admin
- */
-Route::middleware(['auth', 'can:isAdmin'])->group(function () {
+    # ライブラリ
+    Route::resource('likes', LikeController::class)->only('index', 'destroy');
 
-    # 投稿一覧
-    Route::resource('posts', PostController::class)->except('show');
+    # 権限のある管理者のみアクセスできるルート
+    Route::middleware(['auth', 'can:isAdmin'])->group(function () {
 
-    # カテゴリー一覧
-    Route::resource('categories', CategoryController::class)->except('show');
+        # 投稿一覧
+        Route::resource('posts', PostController::class)->except('show');
 
+        # カテゴリー一覧
+        Route::resource('categories', CategoryController::class)->except('show');
+    });
 });
 
 /**

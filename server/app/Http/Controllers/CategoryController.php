@@ -4,16 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
-use App\Models\Post;
-use App\Models\Like;
 
 class CategoryController extends Controller
 {
 
-    //未ログイン時はログインさせない
+
     public function __construct()
     {
-        $this->middleware('auth');
+        
     }
 
     /**

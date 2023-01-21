@@ -14,7 +14,7 @@ class LikeController extends Controller
     //未ログイン時はログインさせない
     public function __construct()
     {
-        $this->middleware('auth');
+        
     }
 
     //投稿追加機能
@@ -38,17 +38,6 @@ class LikeController extends Controller
             'likes' => $likes,
         ]);
     }
-
-    public function show($id)
-  {
-    $likes = new Like;
-    $post = Post::find($id);
-    return view('likes.show', [
-      'title' => '投稿詳細',
-      'post'  => $post,
-      'likes' => $likes,
-    ]);
-  }
 
     //いいね機能
     public function ajaxfavorite(Request $request)
