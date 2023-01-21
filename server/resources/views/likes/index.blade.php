@@ -23,7 +23,7 @@
                             </div>
                             <div class="card-footer">
                                 <div>
-                                    <a href="{{ route('likes.show', $like) }}" class="btn btn-primary">詳細</a>
+                                    <a href="{{ route('posts.show', $like) }}" class="btn btn-primary">詳細</a>
                                     {!! Form::open(['route' => ['likes.destroy', $like], 'method' => 'delete', 'class' => 'btn-group']) !!}
                                     {!! Form::button('<span data-feather="trash"></span>削除', [
                                         'type' => 'submit',

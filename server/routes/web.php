@@ -37,13 +37,10 @@ Route::get('home', [HomeController::class, 'index'])->name('home');
 Route::resource('posts', PostController::class)->only('show');
 
 # ライブラリ
-Route::resource('likes', LikeController::class)->only('index', 'show', 'destroy');
+Route::resource('likes', LikeController::class)->only('index', 'destroy');
 
 # 検索
 Route::resource('search', SearchController::class)->only('index');
-
-# 検索結果
-Route::get('search/result', [SearchController::class, 'result'])->name('search.result');
 
 
 /**
