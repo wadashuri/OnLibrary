@@ -30,15 +30,6 @@ Route::get('/', function () {
 # ログイン周り
 Auth::routes();
 
-# ホーム
-Route::get('home', [HomeController::class, 'index'])->name('home');
-
-# 投稿詳細ページ
-Route::resource('posts', PostController::class)->only('show');
-
-# 検索
-Route::resource('search', SearchController::class)->only('index');
-
 # login後
 Route::group([
     'middleware' => 'auth:web'
@@ -57,6 +48,15 @@ Route::group([
         Route::resource('categories', CategoryController::class)->except('show');
     });
 });
+
+# ホーム
+Route::get('home', [HomeController::class, 'index'])->name('home');
+
+# 投稿詳細ページ
+Route::resource('posts', PostController::class)->only('show');
+
+# 検索
+Route::resource('search', SearchController::class)->only('index');
 
 /**
  * Api
