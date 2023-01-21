@@ -8,10 +8,6 @@
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">{{ $post->title }}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">作者：{{ $post->author }}</h6>
-                    @foreach ($post->categories as $category)
-                        <p class="card-text">カテゴリー：{{ $category->category }}</p>
-                    @endforeach
                 </div>
             </div>
         </a>
