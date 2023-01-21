@@ -1,12 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\LikeController;
-use App\Http\Controllers\SearchController;
+namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Route;
+
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -21,48 +19,57 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['auth', 'can:isAdmin'])->group(function () {
-    //投稿一覧
-    Route::get('posts', [PostController::class, 'index'])->name('posts.index');
-    Route::post('posts', [PostController::class, 'store'])->name('posts.store');
-    Route::get('posts/create', [PostController::class, 'create'])->name('posts.create');
-    Route::delete('posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
-    Route::patch('posts/{post}', [PostController::class, 'update'])->name('posts.update');
-    Route::get('posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
-    //カテゴリー一覧
-    Route::resource('categories', CategoryController::class)->only('index','create','edit','update','store','destroy');
-});
-
-
+/**
+ * Front
+ */
+# リダイレクト設定
 Route::get('/', function () {
     return redirect('home');
 });
 
+# ログイン周り
 Auth::routes();
 
-//ホーム
+# ホーム
 Route::get('home', [HomeController::class, 'index'])->name('home');
 
-//ajax無限スクロール機能
-Route::post('ajaxaddpost', [HomeController::class, 'ajaxaddpost'])->name('ajaxaddpost');
+# 投稿詳細ページ
+Route::resource('posts', PostController::class)->only('show');
 
-//投稿詳細ページ
-Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
-
-//ライブラリ
+# ライブラリ
 Route::resource('likes', LikeController::class)->only('index', 'show', 'destroy');
 
-//ajax無限スクロール機能
-Route::post('likeAjaxAddPost', [LikeController::class, 'likeAjaxAddPost'])->name('like.ajax.add.post');
-
-//検索
+# 検索
 Route::resource('search', SearchController::class)->only('index');
 
-//検索結果
+# 検索結果
 Route::get('search/result', [SearchController::class, 'result'])->name('search.result');
 
-//ajax無限スクロール機能
-Route::post('searchAjaxAddPost', [SearchController::class, 'searchAjaxAddPost'])->name('searchAjaxAddPost');
 
-//ajax非同期いいね機能
+/**
+ * Admin
+ */
+Route::middleware(['auth', 'can:isAdmin'])->group(function () {
+
+    # 投稿一覧
+    Route::resource('posts', PostController::class)->except('show');
+
+    # カテゴリー一覧
+    Route::resource('categories', CategoryController::class)->except('show');
+
+});
+
+/**
+ * Api
+ */
+# ajax無限スクロール機能
+Route::post('ajaxaddpost', [HomeController::class, 'ajaxaddpost'])->name('ajaxaddpost');
+
+# ajax非同期いいね機能
 Route::post('ajaxfavorite', [LikeController::class, 'ajaxfavorite'])->name('ajaxfavorite');
+
+# ajax無限スクロール機能
+Route::post('likeAjaxAddPost', [LikeController::class, 'likeAjaxAddPost'])->name('like.ajax.add.post');
+
+# ajax無限スクロール機能
+Route::post('searchAjaxAddPost', [SearchController::class, 'searchAjaxAddPost'])->name('searchAjaxAddPost');
