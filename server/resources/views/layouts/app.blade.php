@@ -162,7 +162,7 @@
             @yield('content')
         </main>
         <footer class="fixed-bottom bg-white d-md-none">
-            <ul class="nav nav-tabs">
+            <ul class="nav nav-tabs justify-content-center">
                 <li class="nav-item">
                     <a class="nav-link p-1 py-3 {{ Request::routeIs('home') ? 'active' : '' }}  link-secondary"
                         href="{{ route('home') }}"><i class="bi bi-house-door" style="color: gray;"></i>ホーム</a>
