@@ -16,7 +16,7 @@
         </a>
         <a class="dropdown-item" onclick="if(!confirm('外部サイトへ移動します、よろしいですか？')) return false;"
             href="{{ url('/service/お問い合わせ/') }}" target="_blank" rel="noopener noreferrer">
-            <i class="bi bi-chat-right-text"></i>
+            <i class="bi bi-chat"></i>
             お問合わせ
         </a>
         <a class="dropdown-item" onclick="if(!confirm('外部サイトへ移動します、よろしいですか？')) return false;"
