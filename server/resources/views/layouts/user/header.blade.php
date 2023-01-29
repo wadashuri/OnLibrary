@@ -20,13 +20,13 @@
             </li>
             @guest
                 <li class="nav-item">
-                    <a class="nav-link text-black" href="{{ route('likes.index') }}"
+                    <a class="nav-link text-black" href="{{ route('like.index') }}"
                         onclick="if(!confirm('ログインが必要です、移動しますか？')) return false;"><i
                             class="bi bi-book"></i>ライブラリ</a>
                 </li>
             @else
                 <li class="nav-item">
-                    <a class="nav-link text-black" href="{{ route('likes.index') }}"><i
+                    <a class="nav-link text-black" href="{{ route('like.index') }}"><i
                             class="bi bi-book"></i>ライブラリ</a>
                 </li>
             @endguest

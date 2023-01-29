@@ -36,7 +36,7 @@ Route::group([
 ], function () {
 
     # ライブラリ
-    Route::resource('likes', LikeController::class)->only('index', 'show','destroy');
+    Route::resource('like', LikeController::class)->only('index', 'show','destroy');
 
     # 権限のある管理者のみアクセスできるルート
     Route::middleware(['auth', 'can:isAdmin'])->group(function () {

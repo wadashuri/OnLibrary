@@ -11,7 +11,7 @@
                 </div>
                 <div class="card-footer">
                     <div>
-                        {!! Form::open(['route' => ['likes.destroy', $like], 'method' => 'delete']) !!}
+                        {!! Form::open(['route' => ['like.destroy', $like], 'method' => 'delete']) !!}
                         {!! Form::button('<i class="bi bi-trash3"></i>削除', [
                             'type' => 'submit',
                             'class' => 'btn btn-sm btn-outline-danger',

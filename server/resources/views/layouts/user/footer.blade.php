@@ -9,12 +9,12 @@
     </li>
     <li class="nav-item">
         @guest
-            <a class="nav-link p-1 py-3 link-secondary {{ Request::routeIs('likes.index') ? 'active' : '' }}"
+            <a class="nav-link p-1 py-3 link-secondary {{ Request::routeIs('like.index') ? 'active' : '' }}"
                 onclick="if(!confirm('ログインが必要です、移動しますか？')) return false;"
-                href="{{ route('likes.index') }}"><i class="bi bi-book" style="color: gray;"></i>ライブラリ</a>
+                href="{{ route('like.index') }}"><i class="bi bi-book" style="color: gray;"></i>ライブラリ</a>
         @else
-            <a class="nav-link p-1 py-3 link-secondary {{ Request::routeIs('likes.index') ? 'active' : '' }}"
-                href="{{ route('likes.index') }}"><i class="bi bi-book" style="color: gray;"></i>ライブラリ</a>
+            <a class="nav-link p-1 py-3 link-secondary {{ Request::routeIs('like.index') ? 'active' : '' }}"
+                href="{{ route('like.index') }}"><i class="bi bi-book" style="color: gray;"></i>ライブラリ</a>
         @endguest
     </li>
     <li class="nav-item dropdown">
