@@ -11,7 +11,7 @@
 
                     <div class="card-body">
                         <h1>{{ $title }}</h1>
-                        <form method="POST" action="{{ route('posts.store') }}">
+                        <form method="POST" action="{{ route('post.store') }}">
                             @csrf
                             <h3>本カテゴリー</h3>
                             <select name="category" class="content_inquiry_category">

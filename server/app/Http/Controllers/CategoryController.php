@@ -24,7 +24,7 @@ class CategoryController extends Controller
     {
         return view('category.index', [
             'title' => 'カテゴリー一覧',
-            'categories' =>  $this->_category->get(),
+            'categories' =>  $this->_category->paginate(10),
         ]);
     }
 
@@ -78,7 +78,7 @@ class CategoryController extends Controller
         $this->_category->findOrFail(request()->route('category'))->fill($params)->update();
       });
 
-      return redirect()->route('category.edit', $this->_category->findOrFail(request()->route('category'))->id)->with([
+      return redirect()->route('category.edit', request()->route('category'))->with([
           'alert' => [
               'message' => 'カテゴリーの編集が完了しました。',
               'type' => 'success'

@@ -36,4 +36,6 @@
             </div>
         </div>
     </div>
+    {{-- paginator --}}
+    {{ $categories->appends(request()->query())->links('vendor.pagination.bootstrap-5') }}
 @endsection

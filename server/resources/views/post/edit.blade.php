@@ -3,6 +3,7 @@
 @section('title', $title)
 
 @section('content')
+@include('include.alert')
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -10,7 +11,7 @@
                     <div class="card-header">{{ $title }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('posts.update', $post) }}">
+                        <form method="POST" action="{{ route('post.update', $post) }}">
                             @csrf
                             @method('patch')
                                 <table class="table">

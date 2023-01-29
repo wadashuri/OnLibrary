@@ -1,6 +1,6 @@
 <ul class="nav flex-column">
     <li class="nav-item">
-        <a class="nav-link link-dark" href="{{ route('posts.index') }}">
+        <a class="nav-link link-dark" href="{{ route('post.index') }}">
             <span class="text-secondary"></span>
             投稿一覧
         </a>

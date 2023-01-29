@@ -7,30 +7,30 @@ use App\Models\Category;
 use App\Models\BookTuberCategory;
 use App\Models\Like;
 use App\Http\Requests\PostRequest;
-use App\Models\CategoryPost;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
-  /**
-   * Display a listing of the resource.
-   *
-   * @return \Illuminate\Http\Response
-   */
+
+  protected $_post;
+
+  public function __construct()
+  {
+      $this->middleware(function ($request, $next) {
+          $this->_post = auth()->user()->posts();
+          return $next($request);
+      });
+  }
+
   public function index()
   {
-    $posts = Post::with('categories','book_tuber_categories')->latest()->get();
     return view('post.index', [
       'title' => '自分の投稿',
-      'posts' => $posts,
+      'posts' => $this->_post->with('categories','book_tuber_categories')->latest()->paginate(10),
     ]);
   }
 
-  /**
-   * Show the form for creating a new resource.
-   *
-   * @return \Illuminate\Http\Response
-   */
+
   public function create()
   {
     $categories = Category::all();
@@ -42,33 +42,34 @@ class PostController extends Controller
     ]);
   }
 
-  /**
-   * Store a newly created resource in storage.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Http\Response
-   */
-  // 投稿追加処理
+
   public function store(PostRequest $request)
   {
-    Post::create([
-      'user_id' => Auth::user()->id,
-      'video' => $request->video,
-      'title' => $request->title,
-      'author' => $request->author,
-      'comment' => $request->comment,
-      'affiliate' => $request->affiliate,
-    ]);
-    $post_id = Post::select('id')->latest()->first();
-    CategoryPost::create([
-      'category_id' => $request->category,
-      'post_id' => $post_id->id,
-    ]);
-    $post_id = Post::find($post_id->id);
-    $post_id->book_tuber_categories()->sync($request->booktuber);
+    try {
+      $params = $request->except('category', 'booktuber');
 
-    session()->flash('success', '投稿を追加しました');
-    return redirect()->route('posts.index');
+      $post = DB::transaction(function () use ($params) {
+        return $this->_post->create($params);
+      });
+
+      DB::transaction(function () use ($post,$request) {
+        $post->categories()->attach([$request->category]);
+      });
+
+      DB::transaction(function () use ($post,$request) {
+        $post->book_tuber_categories()->attach([$request->booktuber]);
+      });
+
+      return redirect()->route('post.index')->with([
+          'alert' => [
+              'message' => '登録が完了しました。',
+              'type' => 'success'
+          ]
+      ]);
+  } catch (\Throwable  $e) {
+      logger()->error($e);
+      throw $e;
+  }
   }
 
   /**
@@ -77,74 +78,74 @@ class PostController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function show($id)
+  public function show()
   {
-    $likes = new Like;
-    $post = Post::withCount('likes')->find($id);
     return view('post.show', [
       'title' => '投稿詳細',
-      'post'  => $post,
-      'likes' => $likes,
+      'post'  => Post::withCount('likes')->findOrFail(request()->route('post')),
+      'likes' => new Like,
     ]);
   }
 
-  /**
-   * Show the form for editing the specified resource.
-   *
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
-  public function edit($id)
+ 
+  public function edit()
   {
-    // ルーティングパラメータで渡されたidを利用してインスタンスを取得
-    $post = Post::find($id);
-    $categories = Category::all();
-    $book_tuber_categories = BookTuberCategory::all();
     return view('post.edit', [
       'title' => '投稿編集',
-      'post'  => $post,
-      'categories' => $categories,
-      'book_tuber_categories' => $book_tuber_categories,
+      'post'  => $this->_post->findOrFail(request()->route('post')),
+      'categories' => Category::all(),
+      'book_tuber_categories' => BookTuberCategory::all()
     ]);
   }
 
-  /**
-   * Update the specified resource in storage.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
-  public function update($id, PostRequest $request)
+ 
+  public function update(PostRequest $request)
   {
-    //コメントを編集
-    $post = Post::find($id);
-    $post->update($request->only(['comment', 'title','author', 'video','affiliate']));
-    //本カテゴリーを編集
-    if(!empty($request->category_id)){
-    CategoryPost::where('post_id', $id)->update(['category_id' => $request->category_id]);
+
+    try {
+      $params = $request->except('category_id', 'booktuber_category_id');
+
+      DB::transaction(function () use ($params) {
+        $this->_post->findOrFail(request()->route('post'))->fill($params)->update();
+      });
+
+      DB::transaction(function () use ($request) {
+        $this->_post->findOrFail(request()->route('post'))->categories()->sync([$request->category_id]);
+      });
+
+      DB::transaction(function () use ($request) {
+        $this->_post->findOrFail(request()->route('post'))->book_tuber_categories()->sync([$request->booktuber_category_id]);
+      });
+
+      return redirect()->route('post.index', request()->route('post'))->with([
+          'alert' => [
+              'message' => '投稿の編集が完了しました。',
+              'type' => 'success'
+          ]
+      ]);
+  } catch (\Throwable $e) {
+      logger()->error($e);
+      throw $e;
   }
-  //BookTuberカテゴリーを編集
-  if(!empty($request->booktuber_category_id)){
-    $post_id = Post::find($post->id);
-    $post_id->book_tuber_categories()->sync($request->booktuber_category_id);
   }
 
-    session()->flash('success', '投稿を編集しました');
-    return redirect()->route('posts.index');
-  }
 
-  /**
-   * Remove the specified resource from storage.
-   *
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
-  public function destroy($id)
+  public function destroy()
   {
-    $post = Post::find($id);
-    $post->delete();
-    session()->flash('success', '投稿を削除しました');
-    return redirect()->route('posts.index');
+    try {
+      DB::transaction(function () {
+        $this->_post->findOrFail(request()->route('post'))->delete();
+      });
+
+      return redirect()->route('post.index')->with([
+          'alert' => [
+              'message' => '投稿の削除が完了しました。',
+              'type' => 'danger'
+          ]
+      ]);
+  } catch (\Throwable $e) {
+      logger()->error($e);
+      throw $e;
+  }
   }
 }

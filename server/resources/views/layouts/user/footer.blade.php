@@ -40,7 +40,7 @@
             @endguest
             <li>
                 @can('isAdmin')
-                <a class="dropdown-item" href="{{ route('posts.index') }}">
+                <a class="dropdown-item" href="{{ route('post.index') }}">
                 <i class="bi bi-gear"></i>
                 管理者画面
             </a>

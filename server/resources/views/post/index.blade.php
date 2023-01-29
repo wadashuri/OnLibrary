@@ -3,6 +3,7 @@
 @section('title', $title)
 
 @section('content')
+@include('include.alert')
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -10,7 +11,7 @@
                     <div class="card-header">{{ $title }}</div>
 
                     <div class="card-body">
-                        <a href="{{ route('posts.create') }}">新規投稿</a>
+                        <a href="{{ route('post.create') }}">新規投稿</a>
                         <table class="table">
                             <tr>
                                 <th>名前</th>
@@ -26,9 +27,9 @@
                                     <td>{{ $post->user->name }}</td>
                                     <td>{{ $post->title }}</td>
                                     <td>{!! nl2br(e($post->comment)) !!}</td>
-                                    <td>[<a href="{{ route('posts.edit', $post) }}">編集</a>]</td>
+                                    <td>[<a href="{{ route('post.edit', $post) }}">編集</a>]</td>
                                     <td>
-                                        <form method="post" class="delete" action="{{ route('posts.destroy', $post) }}">
+                                        <form method="post" class="delete" action="{{ route('post.destroy', $post) }}">
                                             @csrf
                                             @method('delete')
                                             <input type="submit" value="削除">
@@ -39,10 +40,10 @@
                                     @endforeach
                                     @foreach ($post->book_tuber_categories as $book_tuber_category)
                                         <td>{{ $book_tuber_category->book_tuber_category }}</td>
+                                    @endforeach
                                 </tr>
-                            @endforeach
-                        @empty
-                            <td>書き込みはありません。</td>
+                            @empty
+                            書き込みはありません。
                             @endforelse
                         </table>
                     </div>
@@ -50,4 +51,6 @@
             </div>
         </div>
     </div>
+    {{-- paginator --}}
+    {{ $posts->appends(request()->query())->links('vendor.pagination.bootstrap-5') }}
 @endsection

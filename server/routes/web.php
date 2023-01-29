@@ -42,7 +42,7 @@ Route::group([
     Route::middleware(['auth', 'can:isAdmin'])->group(function () {
 
         # 投稿一覧
-        Route::resource('posts', PostController::class)->except('show');
+        Route::resource('post', PostController::class)->except('show');
 
         # カテゴリー一覧
         Route::resource('category', CategoryController::class)->except('show');
@@ -53,7 +53,7 @@ Route::group([
 Route::get('home', [HomeController::class, 'index'])->name('home');
 
 # 投稿詳細ページ
-Route::resource('posts', PostController::class)->only('show');
+Route::resource('post', PostController::class)->only('show');
 
 # 検索
 Route::resource('search', SearchController::class)->only('index');
