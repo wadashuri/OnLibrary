@@ -5,6 +5,12 @@
         {{ Auth::user()->name }}
     </a>
     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+        @can('isAdmin')
+        <a class="dropdown-item" href="{{ route('posts.index') }}">
+            <i class="bi bi-gear"></i>
+            管理者画面
+        </a>
+        @endcan
         <a class="dropdown-item" onclick="if(!confirm('外部サイトへ移動します、よろしいですか？')) return false;"
             href="{{ url('/service/privacy-policy/') }}" target="_blank"
             rel="noopener noreferrer">
@@ -22,12 +28,7 @@
             <i class="bi bi-filter-square"></i>
             OnLibraryとは
         </a>
-        @can('isAdmin', Auth::user())
-            <a class="dropdown-item" href="{{ route('posts.index') }}">
-                <i class="bi bi-gear"></i>
-                管理者画面
-            </a>
-        @endcan
+        <hr class="dropdown-divider">
         <a class="dropdown-item" href="{{ route('logout') }}"
             onclick="event.preventDefault();
                          document.getElementById('logout-form').submit();">

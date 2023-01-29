@@ -18,26 +18,44 @@
         @endguest
     </li>
     <li class="nav-item dropdown">
+        @guest
         <a class="nav-link p-1 py-3 dropdown-toggle link-secondary" data-bs-toggle="dropdown"
-            href="#" role="button" aria-expanded="false"><i class="bi bi-door-open"
-                style="color: gray;"></i>会員登録</a>
+            href="#" role="button" aria-expanded="false">
+            <i class="bi bi-door-open" style="color: gray;"></i>
+            会員登録
+        </a>
+        @else
+        <a class="nav-link p-1 py-3 dropdown-toggle link-secondary" data-bs-toggle="dropdown"
+            href="#" role="button" aria-expanded="false">
+            <i class="bi bi-person-fill"></i>
+            {{ Auth::user()->name }}
+        </a>
+        @endguest
         <ul class="dropdown-menu">
+            @guest
             <li><a class="dropdown-item" href="{{ route('register') }}"><i
                         class="bi bi-door-open"></i>{{ __('Register') }}</a></li>
             <li><a class="dropdown-item" href="{{ route('login') }}"><i
                         class="bi bi-box-arrow-in-right"></i>{{ __('Login') }}</a></li>
+            @endguest
+            <li>
+                @can('isAdmin')
+                <a class="dropdown-item" href="{{ route('posts.index') }}">
+                <i class="bi bi-gear"></i>
+                管理者画面
+            </a>
+        @endcan
+            </li>
             <li><a class="dropdown-item" onclick="if(!confirm('外部サイトへ移動します、よろしいですか？')) return false;"
                     href="{{ url('/service/privacy-policy/') }}"><i class="bi bi-card-text"></i>
                     プライバシーポリシー</a></li>
             <li><a class="dropdown-item" onclick="if(!confirm('外部サイトへ移動します、よろしいですか？')) return false;"
-                    href="{{ url('/service/onlibraryの使い方/') }}"><i class="bi bi-card-text"></i>
-                    OnLibraryとは</a></li>
-            <li><a class="dropdown-item" onclick="if(!confirm('外部サイトへ移動します、よろしいですか？')) return false;"
-                    href="{{ url('/service/お問い合わせ/') }}"><i class="bi bi-chat-right-text"></i>
+                    href="{{ url('/service/お問い合わせ/') }}"><i class="bi bi-chat"></i>
                     お問合わせ</a></li>
-            <li>
-                <hr class="dropdown-divider">
-            </li>
+            <li><a class="dropdown-item" onclick="if(!confirm('外部サイトへ移動します、よろしいですか？')) return false;"
+                    href="{{ url('/service/onlibraryの使い方/') }}"><i class="bi bi-filter-square"></i>
+                    OnLibraryとは</a></li>
+            <hr class="dropdown-divider">
             <li>
                 <a class="dropdown-item" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
