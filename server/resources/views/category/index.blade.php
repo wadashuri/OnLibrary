@@ -3,11 +3,14 @@
 @section('title', $title)
 
 @section('content')
+
+    @include('include.alert')
+
     <div class="container">
         <div class="card">
             <div class="card-header">{{ $title }}</div>
             <div class="card-body">
-                <a href="{{ route('categories.create') }}">新規投稿</a>
+                <a href="{{ route('category.create') }}">新規投稿</a>
                 <table class="table">
                     <tbody>
                         <tr>
@@ -19,8 +22,8 @@
                             <tr>
                                 <th scope="row">{{ $value->id }}</th>
                                 <td>{{ $value->category }}</td>
-                                <td><a href="{{ route('categories.edit', $value) }}">編集</a>/
-                                    <form method="post" class="delete" action="{{ route('categories.destroy', $value) }}">
+                                <td><a href="{{ route('category.edit', $value) }}">編集</a>/
+                                    <form method="post" class="delete" action="{{ route('category.destroy', $value) }}">
                                         @csrf
                                         @method('delete')
                                         <input type="submit" value="削除">

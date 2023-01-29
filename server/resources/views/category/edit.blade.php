@@ -3,11 +3,14 @@
 @section('title', $title)
 
 @section('content')
+
+    @include('include.alert')
+    
     <div class="container">
         <div class="card">
             <div class="card-header">{{ $title }}</div>
             <div class="card-body">
-                <form method="POST" action="{{ route('categories.update', $categories) }}">
+                <form method="POST" action="{{ route('category.update', $categories) }}">
                     @csrf
                     @method('patch')
                     <table class="table">

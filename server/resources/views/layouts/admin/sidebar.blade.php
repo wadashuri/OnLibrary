@@ -6,7 +6,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link link-dark" href="{{ route('categories.index') }}">
+        <a class="nav-link link-dark" href="{{ route('category.index') }}">
             <span class="text-secondary"></span>
             カテゴリー一覧
         </a>

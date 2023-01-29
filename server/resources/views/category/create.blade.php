@@ -8,14 +8,14 @@
             <div class="card-header">{{ $title }}</div>
             <div class="card-body">
                 <h1>{{ $title }}</h1>
-                <form method="POST" action="{{ route('categories.store') }}">
+                <form method="POST" action="{{ route('category.store') }}">
                     @csrf
                     <table class="table">
                         <tbody>
                             <th>名前</th>
                             </tr>
                             <tr>
-                                <td><input type="name" name="name"></td>
+                                <td><input type="name" name="category"></td>
                             </tr>
                         </tbody>
                     </table>

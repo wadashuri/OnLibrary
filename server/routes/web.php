@@ -45,7 +45,7 @@ Route::group([
         Route::resource('posts', PostController::class)->except('show');
 
         # カテゴリー一覧
-        Route::resource('categories', CategoryController::class)->except('show');
+        Route::resource('category', CategoryController::class)->except('show');
     });
 });
 

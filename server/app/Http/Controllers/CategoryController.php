@@ -4,72 +4,109 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
+  protected $_category;
+
+  public function __construct()
+  {
+      $this->middleware(function ($request, $next) {
+          $this->_category = Category::query();
+          return $next($request);
+      });
+  }
 
 
-    public function __construct()
-    {
-        
-    }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $categories = Category::all();
-
         return view('category.index', [
             'title' => 'カテゴリー一覧',
-            'categories' =>  $categories,
+            'categories' =>  $this->_category->get(),
         ]);
     }
 
+
+
     public function create()
   {
-    $categories = Category::all();
     return view('category.create', [
-      'title' => '新規投稿',
-      'categories' => $categories,
+      'title' => 'カテゴリー投稿'
     ]);
   }
+
 
   public function store(Request $request)
   {
-    Category::create([
-      'category' => $request->name,
-    ]);
-    return redirect()->route('categories.index');
+    try {
+      $params = $request->input();
+
+      DB::transaction(function () use ($params) {
+          Category::create($params);
+      });
+
+      return redirect()->route('category.index')->with([
+          'alert' => [
+              'message' => 'カテゴリー登録が完了しました。',
+              'type' => 'success'
+          ]
+      ]);
+  } catch (\Throwable  $e) {
+      logger()->error($e);
+      throw $e;
+  }
   }
 
-  public function edit($id)
+
+  public function edit()
   {
-    // ルーティングパラメータで渡されたidを利用してインスタンスを取得
-    $categories = Category::find($id);
     return view('category.edit', [
-      'title' => '投稿編集',
-      'categories' => $categories,
+      'title' => 'カテゴリー編集',
+      'categories' => $this->_category->findOrFail(request()->route('category')),
     ]);
   }
 
-  public function update($id, Request $request)
+
+  public function update(Request $request)
   {
-    //コメントを編集
-    $post = Category::find($id);
-    $post->update($request->only(['category']));
-    
-    return redirect()->route('categories.index');
+    try {
+      $params = $request->input();
+
+      DB::transaction(function () use ($params) {
+        $this->_category->findOrFail(request()->route('category'))->fill($params)->update();
+      });
+
+      return redirect()->route('category.edit', $this->_category->findOrFail(request()->route('category'))->id)->with([
+          'alert' => [
+              'message' => 'カテゴリーの編集が完了しました。',
+              'type' => 'success'
+          ]
+      ]);
+  } catch (\Throwable $e) {
+      logger()->error($e);
+      throw $e;
   }
+  }
+  
 
   public function destroy($id)
   {
-    $post = Category::find($id);
-    $post->delete();
-   
-    return redirect()->route('categories.index');
+    try {
+      DB::transaction(function () {
+        $this->_category->findOrFail(request()->route('category'))->delete();
+      });
+
+      return redirect()->route('category.index')->with([
+          'alert' => [
+              'message' => 'カテゴリーの削除が完了しました。',
+              'type' => 'danger'
+          ]
+      ]);
+  } catch (\Throwable $e) {
+      logger()->error($e);
+      throw $e;
   }
+}
 }
