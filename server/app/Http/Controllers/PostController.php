@@ -19,7 +19,8 @@ class PostController extends Controller
       $this->middleware(function ($request, $next) {
           $this->_post = auth()->user()->posts();
           return $next($request);
-      });
+      })
+      ->except(['show']);
   }
 
   public function index()
