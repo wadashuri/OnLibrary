@@ -3,27 +3,23 @@
 @section('title', $title)
 
 @section('content')
-
-    @include('include.alert')
     
     <div class="container">
+        @include('include.alert')
         <div class="card">
             <div class="card-header">{{ $title }}</div>
             <div class="card-body">
                 <form method="POST" action="{{ route('category.update', $categories) }}">
                     @csrf
                     @method('patch')
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <th scope="row">カテゴリー名</th>
-                                <td><input type="text" name="category" value="{{ $categories->category }}"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <input type="submit" value="更新">
+                    <div class="mb-3">
+                        <label for="category" class="form-label">カテゴリー名</label>
+                        <input type="text" class="form-control" id="category" name="category" value="{{ $categories->category }}">
+                    </div>
+                    <button type="submit" class="btn btn-primary">更新</button>
                 </form>
             </div>
         </div>
     </div>
+
 @endsection
