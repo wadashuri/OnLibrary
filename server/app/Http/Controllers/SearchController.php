@@ -30,7 +30,7 @@ class SearchController extends Controller
                 'title' => 'search',
                 'posts' =>  Post::searchPost($search, $category, $book_tuber_category)
                     ->with('categories', 'user', 'likes')
-                    ->orderBy('created_at', 'desc')->take(6)->get(),
+                    ->orderBy('created_at', 'desc')->take(12)->get(),
                 'categories' => Category::all(),
                 'book_tuber_categories' => BookTuberCategory::all(),
             ]
@@ -57,7 +57,7 @@ class SearchController extends Controller
                 'posts' =>  Post::searchPost($search, $category, $book_tuber_category)
                     ->with('categories', 'user', 'likes')
                     ->offset($offset)->limit($posts_per_page)
-                    ->orderBy('created_at', 'desc')->take(6)->get(),
+                    ->orderBy('created_at', 'desc')->take(12)->get(),
                 'categories' => Category::all(),
                 'book_tuber_categories' => BookTuberCategory::all(),
             ]

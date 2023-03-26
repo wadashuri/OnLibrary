@@ -5443,10 +5443,10 @@ jQuery(function () {
   var search = list.dataset.search;
   var category_string = list.dataset.category_string;
   var book_tuber_category_string = list.dataset.book_tuber_category_string;
-  var postNumNow = 6;
+  var postNumNow = 12;
   /* 最初に表示されている記事数 */
 
-  var postNumAdd = 6;
+  var postNumAdd = 12;
   /* 追加する記事数 */
 
   var flag = false;

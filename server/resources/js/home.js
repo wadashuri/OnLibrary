@@ -33,8 +33,8 @@ jQuery(function() {
 	let search = list.dataset.search;
 	let category_string = list.dataset.category_string;
 	let book_tuber_category_string = list.dataset.book_tuber_category_string;
-	let postNumNow = 6; /* 最初に表示されている記事数 */
-	let postNumAdd = 6; /* 追加する記事数 */
+	let postNumNow = 12; /* 最初に表示されている記事数 */
+	let postNumAdd = 12; /* 追加する記事数 */
 	let flag = false;
 	jQuery(window).on("scroll", function() {
 		let scrollPosition = windowsHeight + jQuery(window).scrollTop();

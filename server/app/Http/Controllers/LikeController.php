@@ -23,7 +23,7 @@ class LikeController extends Controller
     {
         return view('like.index', [
             'title' => 'ライブラリ',
-            'likes' => $this->_like->withPivot('created_at AS joined_at')->orderBy('joined_at', 'desc')->take(6)->get(),
+            'likes' => $this->_like->withPivot('created_at AS joined_at')->orderBy('joined_at', 'desc')->take(12)->get(),
         ]);
     }
 
@@ -67,7 +67,7 @@ class LikeController extends Controller
         $posts_per_page = isset($_POST['post_num_add']) ? $_POST['post_num_add'] : 0;
 
         return view('api.like_add_post', [
-            'likes' =>  $this->_like->withPivot('created_at AS joined_at')->offset($offset)->limit($posts_per_page)->orderBy('joined_at', 'desc')->take(6)->get()
+            'likes' =>  $this->_like->withPivot('created_at AS joined_at')->offset($offset)->limit($posts_per_page)->orderBy('joined_at', 'desc')->take(12)->get()
         ]);
     }
 }
