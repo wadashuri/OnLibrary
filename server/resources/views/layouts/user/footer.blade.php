@@ -47,14 +47,11 @@
         @endcan
             </li>
             <li><a class="dropdown-item" onclick="if(!confirm('外部サイトへ移動します、よろしいですか？')) return false;"
-                    href="{{ url('/service/privacy-policy/') }}"><i class="bi bi-card-text"></i>
+                    href="https://sinceritylab.com/privacy-policy/"><i class="bi bi-card-text"></i>
                     プライバシーポリシー</a></li>
             <li><a class="dropdown-item" onclick="if(!confirm('外部サイトへ移動します、よろしいですか？')) return false;"
-                    href="{{ url('/service/お問い合わせ/') }}"><i class="bi bi-chat"></i>
+                    href="https://sinceritylab.com/%e3%81%8a%e5%95%8f%e3%81%84%e5%90%88%e3%82%8f%e3%81%9b/"><i class="bi bi-chat"></i>
                     お問合わせ</a></li>
-            <li><a class="dropdown-item" onclick="if(!confirm('外部サイトへ移動します、よろしいですか？')) return false;"
-                    href="{{ url('/service/onlibraryの使い方/') }}"><i class="bi bi-filter-square"></i>
-                    OnLibraryとは</a></li>
             <hr class="dropdown-divider">
             <li>
                 <a class="dropdown-item" href="{{ route('logout') }}"
