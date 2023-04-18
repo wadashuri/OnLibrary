@@ -20,6 +20,7 @@
                                 <th>名前</th>
                                 <th>タイトル</th>
                                 <th>コメント</th>
+                                <th>アフィリエイトリンク</th>
                                 <th>編集</th>
                                 <th>削除</th>
                                 <th>本カテゴリー</th>
@@ -32,6 +33,7 @@
                                     <td>{{ $post->user->name }}</td>
                                     <td>{{ $post->title }}</td>
                                     <td>{!! nl2br(e($post->comment)) !!}</td>
+                                    <td>{{ $post->affiliate ? 'あり':'なし'; }}</td>
                                     <td>
                                         <a href="{{ route('post.edit', $post) }}" class="btn btn-sm btn-primary">編集</a>
                                     </td>
